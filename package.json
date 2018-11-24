@@ -1,0 +1,42 @@
+{
+  "name": "static-eagle-nest",
+  "version": "1.0.0",
+  "description": "A Next.js application for school management",
+  "main": "index.js",
+  "scripts": {
+    "start-api": "node server/index.js",
+    "dev": "next",
+    "build": "next build",
+    "start": "next start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WebDeg-Brian/static-eagle-nest.git"
+  },
+  "author": "Brian Le",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/WebDeg-Brian/static-eagle-nest/issues"
+  },
+  "homepage": "https://github.com/WebDeg-Brian/static-eagle-nest#readme",
+  "dependencies": {
+    "@material-ui/core": "^3.5.1",
+    "@material-ui/icons": "^3.0.1",
+    "axios": "^0.18.0",
+    "express": "^4.16.4",
+    "jss": "^9.8.7",
+    "next": "^7.0.2",
+    "nprogress": "^0.2.0",
+    "react": "^16.6.3",
+    "react-device-detect": "^1.6.1",
+    "react-dom": "^16.6.3",
+    "react-jss": "^8.6.1",
+    "react-motion": "^0.5.2",
+    "react-redux": "^5.1.1",
+    "react-resize-detector": "^3.2.0",
+    "redux": "^4.0.1",
+    "styled-components": "^4.1.1",
+    "uuid": "^3.3.2",
+    "validator": "^10.9.0"
+  }
+}
