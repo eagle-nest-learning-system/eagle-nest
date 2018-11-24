@@ -4,6 +4,7 @@ import styled from 'styled-components';
 
 import ArticleStructure from '../imports/ui/components/common/ArticleStructure';
 import ExpansionTypography from '../imports/ui/components/common/ExpansionTypography';
+import QAndAForm from '../imports/ui/components/QAndAForm';
 
 import { 
   Typography,
@@ -93,6 +94,7 @@ const QAndA = () =>
       <Typography variant="body1">
         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos blanditiis tenetur unde suscipit.
       </Typography>
+      <QAndAForm />
     </ArticleStructure>
   </>
 ;

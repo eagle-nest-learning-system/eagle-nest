@@ -5,11 +5,10 @@ import FieldValidator from './FieldValidator';
 import uuidv5 from 'uuid/v5';
 
 const FormValidator = ({ state, rules, onValidate }) => 
-  Object.keys(state).map(key => 
+  Object.keys(rules).map(key => 
     <FieldValidator 
       rules={rules[key]} 
-      value={state[key].value} 
-      blurred={state[key].blurred}
+      validationState={state}
       name={key}
       key={uuidv5(key, uuidv5.URL)} 
       onValidate={onValidate}  

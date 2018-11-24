@@ -4,7 +4,7 @@ import validator from 'validator';
 export default class FieldValidator extends Component {
   validate = () => {
     const {
-      value, 
+      validationState,
       rules, 
       name,
       onValidate 
@@ -13,13 +13,20 @@ export default class FieldValidator extends Component {
       conditions
     } = rules;
 
-    let method, validWhen, message, args; 
+    let value, method, validWhen, message, args; 
 
     for (let rule of conditions) {
+      value = validationState[name].value;
       method = typeof rule.method === 'string' ? validator[rule.method] : rule.method;
-      args = rule.args || [];
+      args = rule.args != null ? rule.args : [];
       validWhen = rule.validWhen;
       message = rule.message || '';
+
+      if (rule.prepend != null) value = `${rule.prepend}${value}`;
+
+      if (rule.append != null) value = `${value}${rule.append}`;
+
+      if (rule.compareTo != null) args.push(validationState[rule.compareTo].value);
 
       if (method(value, ...args) === validWhen || (optional && validator.isEmpty(value))) {
         onValidate(name, {
@@ -34,16 +41,18 @@ export default class FieldValidator extends Component {
           isInvalid: true,
           message
         });
+        break;
       }
     }
   }
 
   componentDidUpdate(prevProps) {
     const { 
-      blurred
+      validationState,
+      name
     } = this.props;
 
-    if (blurred !== prevProps.blurred) {
+    if (validationState[name].switcher !== prevProps.validationState[name].switcher) {
       this.validate();
     }
   }

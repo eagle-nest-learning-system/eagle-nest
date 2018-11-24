@@ -12,13 +12,15 @@ import ToolbarComponent from '../common/ToolbarComponent';
 
 import Router from 'next/router';
 
+import FormValidator, { initValidationState } from '../common/FormValidator';
+import validationRules from './validationRules';
+
 export default class SearchGroup extends Component {
   state = {
     searchOpened: false,
     inputs: {
-      query: ''
-    },
-    validationRes: {}
+      ...initValidationState(validationRules)
+    }
   };
 
   openSearch = () => {
@@ -41,19 +43,39 @@ export default class SearchGroup extends Component {
     this.setState(prevState => ({
       inputs: {
         ...prevState.inputs,
-        [name]: value
+        [name]: {
+          ...prevState.inputs[name],
+          value,
+          switcher: !prevState.inputs[name].switcher
+        }
       }
     }));
-  }
+  };
 
   redirectToResultPage = e => {
+    const { inputs } = this.state;
+
     e.preventDefault();
 
-    const encodedKeyword = encodeURIComponent(this.state.query.value);
+    if (!inputs.query.isInvalid) {
+      const encodedKeyword = encodeURIComponent(inputs.query.value);
 
-    Router.push(`/results?query=${encodedKeyword}`);
-    this.closeSearch();
-  }
+      Router.push(`/results?query=${encodedKeyword}`);
+      this.closeSearch();
+    }
+  };
+
+  updateValidationRes = (name, res) => {
+    this.setState(prevState => ({
+      inputs: {
+        ...prevState.inputs,
+        [name]: {
+          ...prevState.inputs[name],
+          ...res
+        }
+      }
+    }));
+  };
 
   render() {
     const { 
@@ -72,10 +94,15 @@ export default class SearchGroup extends Component {
         <ClickAwayListener onClickAway={this.closeSearch}>
           <AnimatedSearchInput 
             searchOpened={searchOpened} 
-            query={inputs.query} 
+            query={inputs.query.value} 
             updateQuery={this.updateQuery}
             redirectToResultPage={this.redirectToResultPage}
             closeSearch={this.closeSearch} 
+          />
+          <FormValidator
+            state={inputs}
+            rules={validationRules}
+            onValidate={this.updateValidationRes}
           />
         </ClickAwayListener>
       </ToolbarComponent>

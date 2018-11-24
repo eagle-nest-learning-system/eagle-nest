@@ -60,7 +60,7 @@ export default class RegisterForm extends Component {
         ...prevState.inputs,
         [name]: {
           ...prevState.inputs[name],
-          blurred: !prevState.inputs[name].blurred
+          switcher: !prevState.inputs[name].switcher
         }
       }
     }));
@@ -71,24 +71,21 @@ export default class RegisterForm extends Component {
   };
 
   updateValidationRes = (name, res) => {
-    let pass;
-    
-    this.setState(prevState => ({
-      inputs: {
-        ...prevState.inputs,
-        [name]: {
-          ...prevState.inputs[name],
-          ...res
-        }
-      }
-    }), () => {
-      const { inputs } = this.state;
+    let { inputs } = this.state;
 
-      pass = Object.keys(inputs).filter(key => inputs[key].isInvalid).length <= 0;
-      
-      this.setState({
-        pass
-      });
+    inputs = {
+      ...inputs,
+      [name]: {
+        ...inputs[name],
+        ...res
+      }
+    }
+
+    const pass = Object.keys(inputs).filter(key => inputs[key].isInvalid).length <= 0;
+    
+    this.setState({
+      inputs,
+      pass
     });
   };
 
