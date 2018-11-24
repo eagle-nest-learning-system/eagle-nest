@@ -1,17 +1,21 @@
 # Eagle Nest - A Next.js application for school management
 
+:warning: The application currently supports UK phone numbers only
+
 ![Eagle Nest Landing Page](https://user-images.githubusercontent.com/43169879/48971130-b8c59e00-f00d-11e8-959e-a55c3d4d9615.png)
 
 ## Table of Contents
+
 - [Introduction](#introduction)
 - [Features](#features)
+- [Inspiration](#inspiration)
 - [For developers](#for-developers)
   - [Run project locally](#run-project-locally)
   - [Core technologies/dependencies](#core-technologiesdependencies)
   - [Project structure](#project-structure)
 
-
 ## Introduction
+
 Eagle Nest is a web-based application for school management. It involves student registration, documents sharing, parents engagement, group discussions etc. all in one platform and gives students and teachers the ability to accomplish more.
 
 For more features please see [Features](#features)
@@ -19,6 +23,35 @@ For more features please see [Features](#features)
 This project is open-source.
 
 ## Features
+
+- Students:
+  - Ability to submit homework
+  - Ability to review teachers' comments, grades, timetables and detentions/awards
+  - Ability to view and share files
+  - Ability to setup their own planners/to-do lists and get things done
+  - Ability to study in groups
+  - (For boarders only) Ability to sign in and out
+- Teachers:
+  - Ability to set and mark homework
+  - Ability to create timetables
+  - Ability to write comments and reports
+  - Ability to reward/give detentions
+  - Ability to upload and share files
+  - Ability to register students
+  - Ability to create lesson plans
+- (For boarding schools only) House supervisors:
+  - Ability to view boarders' activities
+  - Ability to announce
+  - Ability to reward/give detentions
+  - Ability to track students outside of the boarding house using GPS Tracker
+- Parents:
+  - Ability to view their children's homework, reports, teachers' comments, grades, detentions/awards and timetables
+  - Ability to contact teachers
+  - Ability to view files
+
+## Inspiration
+
+I came up with this idea due to the lack of communication between boarders and house supervisors and the User Interface (UI) interactivity on the Firefly application in my school. This project aims to fix these issues and provide more helpful features.
 
 ## For developers
 
@@ -37,6 +70,7 @@ Then install the dependencies:
 ```
 
 ### Core technologies/dependencies
+
 - [Next.js](https://github.com/zeit/next.js)
 - [React](https://github.com/facebook/react)
 - [Material-UI](https://github.com/mui-org/material-ui)
