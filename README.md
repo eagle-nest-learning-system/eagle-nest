@@ -51,7 +51,7 @@ This project is open-source.
 
 ## Inspiration
 
-I came up with this idea due to the lack of communication between boarders and house supervisors and the User Interface (UI) interactivity on the Firefly application in my school. This project aims to fix these issues and provide more helpful features.
+I came up with this idea after noticing the lack of UI interactivity and performance on my school's management system. People may think it's not important, but improving the loading time and providing students with the best application do make a big difference.This project aims to fix these issues and provide more helpful features that you could ever think of.
 
 ## For developers
 
