@@ -1,25 +1,26 @@
 # Eagle Nest - A Next.js application for school management
 
-##Table of Contents
+## Table of Contents
 - [Introduction](#introduction)
 - [Features](#features)
 - [For developers](#for-developers)
   - [Run project locally](#run-project-locally)
   - [Core technologies/dependencies](#core-technologiesdependencies)
+  - [Project structure](#project-structure)
 
 
-##Introduction
+## Introduction
 Eagle Nest is a web-based application for school management. It involves student registration, documents sharing, parents engagement, group discussions etc. all in one platform and gives students and teachers the ability to accomplish more.
 
 For more features please see [Features](#features)
 
 This project is open-source.
 
-##Features
+## Features
 
-##For developers
+## For developers
 
-###Run project locally
+### Run project locally
 
 To run the project locally, clone it with the following command:
 
@@ -33,7 +34,7 @@ Then install the dependencies:
   npm install
 ```
 
-###Core technologies/dependencies
+### Core technologies/dependencies
 - [Next.js](https://github.com/zeit/next.js)
 - [React](https://github.com/facebook/react)
 - [Material-UI](https://github.com/mui-org/material-ui)
@@ -43,7 +44,7 @@ Then install the dependencies:
 - [axios](https://github.com/axios/axios)
 - [validator](https://github.com/chriso/validator)
 
-##Project structure
+### Project structure
 
 ```
 ├───imports
