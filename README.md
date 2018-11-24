@@ -1,5 +1,7 @@
 # Eagle Nest - A Next.js application for school management
 
+![Eagle Nest Landing Page](https://user-images.githubusercontent.com/43169879/48971130-b8c59e00-f00d-11e8-959e-a55c3d4d9615.png)
+
 ## Table of Contents
 - [Introduction](#introduction)
 - [Features](#features)
