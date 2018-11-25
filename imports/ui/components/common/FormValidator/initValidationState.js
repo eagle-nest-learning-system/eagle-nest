@@ -5,7 +5,7 @@ export default rules => {
   for (let key of keys) {
     validationState[key] = {
       value: '',
-      switcher: false,
+      switch: false,
       isFakeInvalid: false,
       isInvalid: !rules[key].optional,
       message: '',

@@ -46,7 +46,7 @@ export default class RegisterForm extends Component {
         ...prevState.inputs,
         [name]: {
           ...prevState.inputs[name],
-          switcher: !prevState.inputs[name].switcher
+          switch: !prevState.inputs[name].switch
         }
       }
     }));

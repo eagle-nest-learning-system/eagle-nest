@@ -44,7 +44,7 @@ export default class FieldValidator extends Component {
         break;
       }
     }
-  }
+  };
 
   componentDidUpdate(prevProps) {
     const { 
@@ -52,7 +52,7 @@ export default class FieldValidator extends Component {
       name
     } = this.props;
 
-    if (validationState[name].switcher !== prevProps.validationState[name].switcher) {
+    if (validationState[name].switch !== prevProps.validationState[name].switch) {
       this.validate();
     }
   }
