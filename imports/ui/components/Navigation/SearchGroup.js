@@ -46,7 +46,7 @@ export default class SearchGroup extends Component {
         [name]: {
           ...prevState.inputs[name],
           value,
-          switcher: !prevState.inputs[name].switcher
+          switch: !prevState.inputs[name].switch
         }
       }
     }));
@@ -99,12 +99,12 @@ export default class SearchGroup extends Component {
             redirectToResultPage={this.redirectToResultPage}
             closeSearch={this.closeSearch} 
           />
-          <FormValidator
-            state={inputs}
-            rules={validationRules}
-            onValidate={this.updateValidationRes}
-          />
         </ClickAwayListener>
+        <FormValidator
+          state={inputs}
+          rules={validationRules}
+          onValidate={this.updateValidationRes}
+        />
       </ToolbarComponent>
     );
   }
