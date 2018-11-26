@@ -10,7 +10,7 @@ const StyledMainContentInner =  styled.div`
   display: flex;
   padding: ${theme.spacing.unit * 6}px ${theme.spacing.unit * 2}px;
   overflow-x: hidden;
-  ${props => props.noGutterOnMobile && css`
+  ${({ noGutterOnMobile }) => noGutterOnMobile && css`
     @media (max-width: ${theme.breakpoints.values.sm}px) {
       padding: 0;
     }

@@ -5,8 +5,8 @@ import styled, { css } from 'styled-components';
 const StyledMainContentWrapper = styled.div`
   position: relative;
   width: 100vw;
-  ${props => props.pushHeight ? css`
-    height: calc(100vh - ${props => props.pushHeight}px);
+  ${({ pushHeight }) => pushHeight ? css`
+    height: calc(100vh - ${pushHeight}px);
   ` : `
     height: 100vh;
   `}

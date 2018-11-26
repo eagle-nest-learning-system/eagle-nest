@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import InputsWrapper from '../common/InputsWrapper';
+import FileUploadButton from '../common/FileUploadButton';
 import FormValidator, { initValidationState } from '../common/FormValidator';
 
 import validationRules from './validationRules';
@@ -184,6 +185,7 @@ export default class RegisterForm extends Component {
             helperText={inputs.description.message}
             fullWidth 
           />
+          <FileUploadButton buttonId="eagle-bugs-image-upload" />
         </InputsWrapper>
         <Button
           type="submit"

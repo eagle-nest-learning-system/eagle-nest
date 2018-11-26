@@ -20,7 +20,7 @@ import { navigationActions } from './controllers';
 import ResizeDetector from 'react-resize-detector';
 
 const StyledNavigationPusher = styled.div`
-  height: ${props => props.navigationHeight}px;
+  height: ${({ navigationHeight }) => navigationHeight}px;
 `;
 
 const mapStateToProps = state => ({

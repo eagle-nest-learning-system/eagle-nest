@@ -8,13 +8,13 @@ const StyledToolbarComponent = styled.div`
   &:not(:last-child) {
     margin-right: ${theme.spacing.unit * 2}px;
   }
-  ${props => props.stretch && css`
+  ${({ stretch }) => stretch && css`
     flex: 1 0 auto;
   `}
-  ${props => props.flex && css`
+  ${({ flex }) => flex && css`
     display: flex;
   `}
-  ${props => props.hiddenOverflow && css`
+  ${({hiddenOverflow}) => hiddenOverflow && css`
     overflow: hidden;
   `}
 `;

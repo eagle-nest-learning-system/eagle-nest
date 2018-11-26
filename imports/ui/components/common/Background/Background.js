@@ -6,7 +6,7 @@ import { fade } from '@material-ui/core/styles/colorManipulator';
 import theme from '../../../theme';
 
 const StyledBackground = styled.div`
-  background: url(${props => props.image}) center/cover no-repeat fixed;
+  background: url(${({ image }) => image}) center/cover no-repeat fixed;
   position: absolute;
   width: 100%;
   height: 100%;
