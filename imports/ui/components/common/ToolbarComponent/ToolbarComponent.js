@@ -19,7 +19,7 @@ const StyledToolbarComponent = styled.div`
   `}
 `;
 
-const ToolbarComponent = ({stretch, flex, hiddenOverflow, children}) => 
+const ToolbarComponent = ({ stretch, flex, hiddenOverflow, children }) => 
   <StyledToolbarComponent
     stretch={stretch}
     flex={flex}
