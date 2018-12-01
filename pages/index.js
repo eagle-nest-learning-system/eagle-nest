@@ -1,16 +1,13 @@
 import React from 'react';
-
+import Head from 'next/head';
 import HeroBanner from '../imports/ui/components/HeroBanner';
 
-import Head from 'next/head';
-
-const Index = () => 
+const Index = () => (
   <>
     <Head>
       <title>Official Home Page | Eagle Nest</title>
     </Head>
     <HeroBanner />
   </>
-;
-
-export default Index
+);
+export default Index;

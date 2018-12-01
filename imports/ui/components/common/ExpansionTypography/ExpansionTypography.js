@@ -1,8 +1,7 @@
 import React from 'react';
-
+import PropTypes from 'prop-types';
 import { Typography } from '@material-ui/core';
 import theme from '../../../theme';
-
 import styled from 'styled-components';
 
 const StyledExpansionTypography = styled(Typography)`
@@ -11,10 +10,12 @@ const StyledExpansionTypography = styled(Typography)`
   }
 `;
 
-const ExpansionTypography = ({ text }) => 
-  <StyledExpansionTypography>
-    {text}
-  </StyledExpansionTypography>
-;
+const ExpansionTypography = ({ text }) => (
+  <StyledExpansionTypography>{text}</StyledExpansionTypography>
+);
 
-export default ExpansionTypography
+ExpansionTypography.propTypes = {
+  text: PropTypes.string.isRequired,
+};
+
+export default ExpansionTypography;

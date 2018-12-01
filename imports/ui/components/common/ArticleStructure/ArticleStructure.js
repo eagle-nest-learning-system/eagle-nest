@@ -1,14 +1,11 @@
 import React from 'react';
-
+import PropTypes from 'prop-types';
 import MainContentWrapper from '../MainContentWrapper';
 import MainContentInner from '../MainContentInner';
 import ArticleBackground from './ArticleBackground';
-
 import { Paper } from '@material-ui/core';
 import theme from '../../../theme';
-
 import styled from 'styled-components';
-
 import { connect } from 'react-redux';
 
 const StyledArticleWrapper = styled(Paper)`
@@ -24,13 +21,13 @@ const StyledArticleWrapper = styled(Paper)`
 
 const mapStateToProps = state => ({
   viewportWidth: state.app.viewportWidth,
-  navigationHeight: state.navigation.navigationHeight
-})
+  navigationHeight: state.navigation.navigationHeight,
+});
 
 const ArticleStructure = ({ children, navigationHeight, viewportWidth }) => {
   const isMobile = viewportWidth < theme.breakpoints.values.sm;
 
-  return (  
+  return (
     <MainContentWrapper pushHeight={navigationHeight}>
       <ArticleBackground />
       <MainContentInner noGutterOnMobile>
@@ -42,4 +39,13 @@ const ArticleStructure = ({ children, navigationHeight, viewportWidth }) => {
   );
 };
 
-export default connect(mapStateToProps, null)(ArticleStructure)
+ArticleStructure.propTypes = {
+  children: PropTypes.node.isRequired,
+  navigationHeight: PropTypes.number.isRequired,
+  viewportWidth: PropTypes.number.isRequired,
+};
+
+export default connect(
+  mapStateToProps,
+  null,
+)(ArticleStructure);

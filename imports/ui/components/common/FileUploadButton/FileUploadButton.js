@@ -1,41 +1,48 @@
 import React from 'react';
-
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
-
 import { Button } from '@material-ui/core';
 import { CloudUpload as UploadIcon } from '@material-ui/icons';
-
 import theme from '../../../theme';
 
-const StyledFileUploadButton = styled.div`
-  margin-top: ${theme.spacing.unit * 2}px;
-`;
-
 const StyledFileInput = styled.input.attrs({
-  multiple: true,
   type: 'file',
-  id: ({ buttonId }) => buttonId
 })`
   display: none;
 `;
 
-const StyledIcon = styled(UploadIcon)`
+const StyledUploadIcon = styled(UploadIcon)`
   margin-right: ${theme.spacing.unit}px;
 `;
 
-const FileUploadButton = ({ buttonId }) =>
-  <StyledFileUploadButton>
-    <StyledFileInput buttonId={buttonId} />
-    <label htmlFor={buttonId}>
-      <Button 
-        variant="contained" 
-        component="span"
-      >
-        <StyledIcon />
+const FileUploadButton = ({ id, multiple, name, onChange, onBlur }) => (
+  <>
+    <StyledFileInput
+      id={id}
+      multiple={multiple}
+      name={name}
+      onChange={onChange}
+      onBlur={onBlur}
+    />
+    <label htmlFor={id}>
+      <Button variant="contained" component="span">
+        <StyledUploadIcon />
         Upload
       </Button>
     </label>
-  </StyledFileUploadButton>
-;
+  </>
+);
+
+FileUploadButton.propTypes = {
+  id: PropTypes.string.isRequired,
+  multiple: PropTypes.bool,
+  name: PropTypes.string.isRequired,
+  onBlur: PropTypes.func.isRequired,
+  onChange: PropTypes.func.isRequired,
+};
+
+FileUploadButton.defaultProps = {
+  multiple: false,
+};
 
 export default FileUploadButton;

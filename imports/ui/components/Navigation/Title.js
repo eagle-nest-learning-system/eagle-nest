@@ -1,17 +1,12 @@
-import React from 'react';
+import React from "react";
 
-import AnimatedTitle from './AnimatedTitle';
+import AnimatedTitle from "./AnimatedTitle";
 
-import ToolbarComponent from '../common/ToolbarComponent';
+import ToolbarComponent from "../common/ToolbarComponent";
 
-const Title = () => 
-  <ToolbarComponent 
-    stretch 
-    flex
-    hiddenOverflow
-  >
+const Title = () => (
+  <ToolbarComponent stretch flex hiddenOverflow>
     <AnimatedTitle />
   </ToolbarComponent>
-;
-
-export default Title
+);
+export default Title;

@@ -1,102 +1,88 @@
 import React from 'react';
-
-import Preloader from '../imports/ui/components/Preloader';
-import Navigation from '../imports/ui/components/Navigation';
-
 import App, { Container } from 'next/app';
-
 import { MuiThemeProvider } from '@material-ui/core/styles';
 import { CssBaseline } from '@material-ui/core';
-
 import { JssProvider } from 'react-jss';
-import getPageContext from '../imports/utils/getPageContext';
-
 import { Provider, connect } from 'react-redux';
-import withRedux from '../imports/utils/withRedux';
-import { rootActions } from '../imports/ui/root-controllers';
-
 import {
-  browserName, 
+  browserName,
   browserVersion,
-  fullBrowserVersion, 
-  engineName, 
-  engineVersion, 
-  mobileVendor, 
-  mobileModel, 
-  osName as OSName, 
-  osVersion as OSVersion
+  fullBrowserVersion,
+  engineName,
+  engineVersion,
+  mobileVendor,
+  mobileModel,
+  osName as OSName,
+  osVersion as OSVersion,
 } from 'react-device-detect';
-
 import NProgress from 'nprogress';
 import Router from 'next/router';
+import { rootActions } from '../imports/ui/root-controllers';
+import withRedux from '../imports/utils/withRedux';
+import getPageContext from '../imports/utils/getPageContext';
+import Navigation from '../imports/ui/components/Navigation';
+import Preloader from '../imports/ui/components/Preloader';
 
 Router.events.on('routeChangeStart', () => NProgress.start());
 Router.events.on('routeChangeComplete', () => NProgress.done());
 Router.events.on('routeChangeError', () => NProgress.done());
 
-export default withRedux(connect(null, rootActions)(class SiteApp extends App {
-  pageContext = getPageContext();
+export default withRedux(
+  connect(
+    null,
+    rootActions,
+  )(
+    class SiteApp extends App {
+      pageContext = getPageContext();
 
-  updateViewportDimensions = () => {
-    const newWidth = document.documentElement.clientWidth,
-    newHeight = document.documentElement.clientHeight;
+      updateViewportDimensions = () => {
+        const newWidth = document.documentElement.clientWidth;
 
-    this.props.updateViewportDimensions(newWidth, newHeight);
-  };
+        const newHeight = document.documentElement.clientHeight;
 
-  componentDidMount() {
-    const jssStyles = document.querySelector('#Mui-SSR'),
-    preloader = document.querySelector('.eagle-preloader');
+        this.props.updateViewportDimensions(newWidth, newHeight);
+      };
 
-    if (preloader) preloader.classList.add('eagle-loaded');
+      componentDidMount() {
+        const jssStyles = document.querySelector('#Mui-SSR');
 
-    if (jssStyles && jssStyles.parentNode) {
-      jssStyles.parentNode.removeChild(jssStyles);
-    }
+        const preloader = document.querySelector('.eagle-preloader');
 
-    this.updateViewportDimensions();
-    window.addEventListener('resize', this.updateViewportDimensions, false);
+        if (preloader) preloader.classList.add('eagle-loaded');
 
-    this.props.getBrowserInfo(browserName, browserVersion, fullBrowserVersion); 
-    this.props.getEngineInfo(engineName, engineVersion); 
-    this.props.getMobileInfo(mobileVendor, mobileModel); 
-    this.props.getOSInfo(OSName, OSVersion); 
-  }
+        if (jssStyles && jssStyles.parentNode) {
+          jssStyles.parentNode.removeChild(jssStyles);
+        }
 
-  render() {
-    const { 
-      Component, 
-      pageProps,
-      store
-    } = this.props, {
-      theme,
-      sheetsRegistry,
-      sheetsManager,
-      generateClassName
-    } = this.pageContext;
+        this.updateViewportDimensions();
+        window.addEventListener('resize', this.updateViewportDimensions, false);
 
-    return (
-      <Container>
-        <Provider store={store}>
-          <JssProvider
-            registry={sheetsRegistry}
-            generateClassName={generateClassName}
-          >
-            <MuiThemeProvider
-              theme={theme}
-              sheetsManager={sheetsManager}
-            >
-              <CssBaseline />
-              <Preloader />
-              <Navigation />
-              <Component 
-                pageContext={this.pageContext}
-                {...pageProps} 
-              />
-            </MuiThemeProvider>
-          </JssProvider>
-        </Provider>
-      </Container>
-    );
-  }
-}))
+        this.props.getBrowserInfo(browserName, browserVersion, fullBrowserVersion);
+        this.props.getEngineInfo(engineName, engineVersion);
+        this.props.getMobileInfo(mobileVendor, mobileModel);
+        this.props.getOSInfo(OSName, OSVersion);
+      }
+
+      render() {
+        const { Component, pageProps, store } = this.props;
+
+        const { theme, sheetsRegistry, sheetsManager, generateClassName } = this.pageContext;
+
+        return (
+          <Container>
+            <Provider store={store}>
+              <JssProvider registry={sheetsRegistry} generateClassName={generateClassName}>
+                <MuiThemeProvider theme={theme} sheetsManager={sheetsManager}>
+                  <CssBaseline />
+                  <Preloader />
+                  <Navigation />
+                  <Component pageContext={this.pageContext} {...pageProps} />
+                </MuiThemeProvider>
+              </JssProvider>
+            </Provider>
+          </Container>
+        );
+      }
+    },
+  ),
+);

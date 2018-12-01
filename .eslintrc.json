@@ -1,0 +1,70 @@
+{
+  "env": {
+    "browser": true,
+    "node": true
+  },
+  "extends": ["plugin:import/recommended", "airbnb"],
+  "parser": "babel-eslint",
+  "plugins": ["babel", "import", "jsx-a11y", "material-ui"],
+  "rules": {
+    "linebreak-style": "off",
+    "no-underscore-dangle": "off",
+    "no-restricted-syntax": "off",
+    "prefer-destructuring": "off",
+    "arrow-body-style": "off",
+    "arrow-parens": "off",
+    "object-curly-newline": "off",
+    "function-paren-newline": "off",
+    "indent": "off",
+    "implicit-arrow-linebreak": "off",
+    "space-before-function-paren": "off",
+    "no-confusing-arrow": "off",
+    "no-mixed-operators": "off",
+    "consistent-this": ["error", "self"],
+    "max-len": [
+      "warn",
+      100,
+      2,
+      {
+        "ignoreUrls": true
+      }
+    ],
+    "no-console": "error",
+    "no-alert": "error",
+    "no-param-reassign": "off",
+    "no-prototype-builtins": "off",
+    "operator-linebreak": "off",
+    "import/namespace": ["error", { "allowComputed": true }],
+    "import/order": [
+      "error",
+      {
+        "groups": [["index", "sibling", "parent", "internal", "external", "builtin"]],
+        "newlines-between": "never"
+      }
+    ],
+
+    "react/jsx-indent": "off",
+    "react/jsx-closing-bracket-location": "off",
+    "react/jsx-wrap-multilines": "off",
+    "react/jsx-indent-props": "off",
+    "react/jsx-one-expression-per-line": "off",
+    "react/jsx-handler-names": [
+      "error",
+      {
+        "eventHandlerPrefix": "handle",
+        "eventHandlerPropPrefix": "on"
+      }
+    ],
+    "react/jsx-curly-brace-presence": "off",
+    "react/forbid-prop-types": "off",
+    "react/require-default-props": "off",
+    "react/destructuring-assignment": "off",
+    "react/jsx-filename-extension": ["error", { "extensions": [".js"] }],
+    "react/no-danger": "error",
+    "react/no-direct-mutation-state": "error",
+    "react/no-find-dom-node": "off",
+    "react/sort-prop-types": "error",
+    "jsx-a11y/label-has-associated-control": "off",
+    "jsx-a11y/label-has-for": "off"
+  }
+}

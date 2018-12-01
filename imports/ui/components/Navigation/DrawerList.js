@@ -1,30 +1,30 @@
-import React from 'react';
+import React from "react";
 
-import styled from 'styled-components';
+import styled from "styled-components";
 
-import { 
+import {
   List,
   ListItem,
   ListItemIcon,
   ListItemText,
-  Divider 
-} from '@material-ui/core';
-import { 
+  Divider
+} from "@material-ui/core";
+import {
   HomeOutlined as HomeIcon,
   BugReportOutlined as BugReportIcon,
   ContactSupportOutlined as HowTosIcon,
   QuestionAnswerOutlined as FeedbackIcon,
   AccountCircleOutlined as LoginIcon,
-  AssignmentIndOutlined as RegisterIcon 
-} from '@material-ui/icons';
+  AssignmentIndOutlined as RegisterIcon
+} from "@material-ui/icons";
 
-import Link from 'next/link';
+import Link from "next/link";
 
 const StyledNavigationList = styled.div`
   width: 250px;
 `;
 
-const DrawerList = () => 
+const DrawerList = () => (
   <StyledNavigationList>
     <List>
       <Link href="/">
@@ -83,6 +83,5 @@ const DrawerList = () =>
       </Link>
     </List>
   </StyledNavigationList>
-;
-
-export default DrawerList
+);
+export default DrawerList;

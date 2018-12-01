@@ -1,15 +1,12 @@
-import React from 'react';
+import React from "react";
 
-import styled from 'styled-components';
+import styled from "styled-components";
 
-import { Typography } from '@material-ui/core';
+import { Typography } from "@material-ui/core";
 
-import { 
-  Motion, 
-  spring 
-} from 'react-motion';
+import { Spring } from "react-spring";
 
-import Link from 'next/link';
+import Link from "next/link";
 
 const StyledNavigationTitle = styled(Typography)`
   && {
@@ -18,30 +15,29 @@ const StyledNavigationTitle = styled(Typography)`
   }
 `;
 
-const AnimatedTitle = () => 
-  <Motion 
-    defaultStyle={{
-      xpos: -100  
+const AnimatedTitle = () => (
+  <Spring
+    from={{
+      xpos: -100
     }}
-    style={{
-      xpos: spring(0)
+    to={{
+      xpos: 0
     }}
   >
-    {({xpos}) =>
+    {({ xpos }) => (
       <Link href="/">
         <StyledNavigationTitle
           style={{
             transform: `translateX(${xpos}%)`
           }}
-          variant="h4" 
-          component="h1" 
+          variant="h4"
+          component="h1"
           color="inherit"
         >
           Eagle Nest
         </StyledNavigationTitle>
       </Link>
-    }
-  </Motion>
-;
-
-export default AnimatedTitle
+    )}
+  </Spring>
+);
+export default AnimatedTitle;

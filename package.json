@@ -7,7 +7,8 @@
     "start-api": "node server/index.js",
     "dev": "next",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "lint": "eslint ."
   },
   "repository": {
     "type": "git",
@@ -26,17 +27,31 @@
     "express": "^4.16.4",
     "jss": "^9.8.7",
     "next": "^7.0.2",
+    "npm": "^6.4.1",
     "nprogress": "^0.2.0",
+    "prop-types": "^15.6.2",
     "react": "^16.6.3",
     "react-device-detect": "^1.6.1",
     "react-dom": "^16.6.3",
     "react-jss": "^8.6.1",
-    "react-motion": "^0.5.2",
     "react-redux": "^5.1.1",
     "react-resize-detector": "^3.2.0",
+    "react-spring": "^6.1.10",
     "redux": "^4.0.1",
     "styled-components": "^4.1.1",
+    "styled-jsx": "^3.1.2",
     "uuid": "^3.3.2",
     "validator": "^10.9.0"
+  },
+  "devDependencies": {
+    "babel-eslint": "^10.0.1",
+    "eslint": "^5.9.0",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-plugin-babel": "^5.3.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jsx-a11y": "^6.1.2",
+    "eslint-plugin-material-ui": "^1.0.1",
+    "eslint-plugin-react": "^7.11.1",
+    "prettier": "^1.15.3"
   }
 }

@@ -75,7 +75,7 @@ Then install the dependencies:
 - [React](https://github.com/facebook/react)
 - [Material-UI](https://github.com/mui-org/material-ui)
 - [styled-components](https://github.com/styled-components/styled-components)
-- [React-motion](https://github.com/chenglou/react-motion)
+- [React-spring](https://github.com/drcmda/react-spring)
 - [Redux](https://github.com/reduxjs/redux)
 - [axios](https://github.com/axios/axios)
 - [validator](https://github.com/chriso/validator)
@@ -176,7 +176,7 @@ Then install the dependencies:
 │   └───index.js
 └───static
     ├───css
-    |   └───nprogress.css   
+    |   └───nprogress.css
     └───images
         ├───article-background.css
         └───hero-banner.jpg

@@ -1,47 +1,37 @@
 import React from 'react';
-
 import styled from 'styled-components';
-
-import ArticleStructure from '../imports/ui/components/common/ArticleStructure';
-import ExpansionTypography from '../imports/ui/components/common/ExpansionTypography';
-import QAndAForm from '../imports/ui/components/QAndAForm';
-
-import { 
+import {
   Typography,
   ExpansionPanel,
   ExpansionPanelSummary,
-  ExpansionPanelDetails
+  ExpansionPanelDetails,
 } from '@material-ui/core';
 import { ExpandMore as ExpandMoreIcon } from '@material-ui/icons';
-import theme from '../imports/ui/theme';
-
 import Head from 'next/head';
+import ArticleStructure from '../imports/ui/components/common/ArticleStructure';
+import ExpansionTypography from '../imports/ui/components/common/ExpansionTypography';
+import QAndAForm from '../imports/ui/components/QAndAForm';
+import theme from '../imports/ui/theme';
 
 const StyledExpansionWrapper = styled.div`
   margin: ${theme.spacing.unit * 4}px 0;
 `;
 
-const QAndA = () => 
+const QAndA = () => (
   <>
     <Head>
       <title>Q&A | Eagle Nest</title>
     </Head>
     <ArticleStructure>
-      <Typography 
-        variant="h2" 
-        gutterBottom
-      >
+      <Typography variant="h2" gutterBottom>
         Q&A
       </Typography>
-      <Typography 
-        variant="h4" 
-        component="h3"
-        gutterBottom
-      >
+      <Typography variant="h4" component="h3" gutterBottom>
         Frequently Asked Questions
       </Typography>
       <Typography variant="body1">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos blanditiis tenetur unde suscipit.
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos blanditiis tenetur unde
+        suscipit.
       </Typography>
       <StyledExpansionWrapper>
         <ExpansionPanel>
@@ -50,7 +40,9 @@ const QAndA = () =>
           </ExpansionPanelSummary>
           <ExpansionPanelDetails>
             <Typography variant="body1">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos blanditiis tenetur unde suscipit, quam beatae rerum inventore consectetur, neque doloribus, cupiditate numquam dignissimos laborum fugiat deleniti? Eum quasi quidem quibusdam.
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos blanditiis tenetur unde
+              suscipit, quam beatae rerum inventore consectetur, neque doloribus, cupiditate numquam
+              dignissimos laborum fugiat deleniti? Eum quasi quidem quibusdam.
             </Typography>
           </ExpansionPanelDetails>
         </ExpansionPanel>
@@ -60,7 +52,9 @@ const QAndA = () =>
           </ExpansionPanelSummary>
           <ExpansionPanelDetails>
             <Typography variant="body1">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos blanditiis tenetur unde suscipit, quam beatae rerum inventore consectetur, neque doloribus, cupiditate numquam dignissimos laborum fugiat deleniti? Eum quasi quidem quibusdam.
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos blanditiis tenetur unde
+              suscipit, quam beatae rerum inventore consectetur, neque doloribus, cupiditate numquam
+              dignissimos laborum fugiat deleniti? Eum quasi quidem quibusdam.
             </Typography>
           </ExpansionPanelDetails>
         </ExpansionPanel>
@@ -70,7 +64,9 @@ const QAndA = () =>
           </ExpansionPanelSummary>
           <ExpansionPanelDetails>
             <Typography variant="body1">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos blanditiis tenetur unde suscipit, quam beatae rerum inventore consectetur, neque doloribus, cupiditate numquam dignissimos laborum fugiat deleniti? Eum quasi quidem quibusdam.
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos blanditiis tenetur unde
+              suscipit, quam beatae rerum inventore consectetur, neque doloribus, cupiditate numquam
+              dignissimos laborum fugiat deleniti? Eum quasi quidem quibusdam.
             </Typography>
           </ExpansionPanelDetails>
         </ExpansionPanel>
@@ -80,23 +76,22 @@ const QAndA = () =>
           </ExpansionPanelSummary>
           <ExpansionPanelDetails>
             <Typography variant="body1">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos blanditiis tenetur unde suscipit, quam beatae rerum inventore consectetur, neque doloribus, cupiditate numquam dignissimos laborum fugiat deleniti? Eum quasi quidem quibusdam.
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos blanditiis tenetur unde
+              suscipit, quam beatae rerum inventore consectetur, neque doloribus, cupiditate numquam
+              dignissimos laborum fugiat deleniti? Eum quasi quidem quibusdam.
             </Typography>
           </ExpansionPanelDetails>
         </ExpansionPanel>
       </StyledExpansionWrapper>
-      <Typography 
-        variant="h4" 
-        gutterBottom
-      >
+      <Typography variant="h4" gutterBottom>
         Still have questions? Ask us!
       </Typography>
       <Typography variant="body1">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos blanditiis tenetur unde suscipit.
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos blanditiis tenetur unde
+        suscipit.
       </Typography>
       <QAndAForm />
     </ArticleStructure>
   </>
-;
-
-export default QAndA
+);
+export default QAndA;

@@ -1,10 +1,7 @@
 import React from 'react';
-
 import styled from 'styled-components';
-
 import { Button } from '@material-ui/core';
 import theme from '../../theme';
-
 import Link from 'next/link';
 
 const StyledButtonWrapper = styled.div`
@@ -20,21 +17,20 @@ const StyledButton = styled(Button)`
   }
 `;
 
-const ActionButton = ({ buttonYPos, buttonOpacity }) => 
+const ActionButton = ({ buttonYPos, buttonOpacity }) => (
   <StyledButtonWrapper>
     <Link href="/register">
-      <StyledButton 
+      <StyledButton
         style={{
           transform: `translateY(${buttonYPos}px)`,
-          opacity: buttonOpacity
+          opacity: buttonOpacity,
         }}
-        variant="extendedFab" 
-        color="secondary" 
+        variant="extendedFab"
+        color="secondary"
       >
         Join now!
       </StyledButton>
     </Link>
   </StyledButtonWrapper>
-;
-
-export default ActionButton
+);
+export default ActionButton;

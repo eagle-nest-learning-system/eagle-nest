@@ -1,14 +1,12 @@
 import { SheetsRegistry } from 'jss';
-
 import { createGenerateClassName } from '@material-ui/core/styles';
-
 import theme from '../ui/theme';
 
 const createPageContext = () => ({
   theme,
   sheetsManager: new Map(),
   sheetsRegistry: new SheetsRegistry(),
-  generateClassName: createGenerateClassName()
+  generateClassName: createGenerateClassName(),
 });
 
 export default () => {
@@ -21,4 +19,4 @@ export default () => {
   }
 
   return window.__GLOBAL_MUI__;
-}
+};

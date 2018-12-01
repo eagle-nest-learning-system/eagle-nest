@@ -1,9 +1,6 @@
 import React from 'react';
-
 import { CircularProgress } from '@material-ui/core';
-
-import styled, { css } from 'styled-components';
-
+import styled from 'styled-components';
 import theme from '../../theme';
 
 const StyledLoader = styled.div`
@@ -26,10 +23,9 @@ const StyledCircularProgress = styled(CircularProgress)`
   color: ${theme.palette.common.white};
 `;
 
-const Preloader = () => 
+const Preloader = () => (
   <StyledLoader className="eagle-preloader">
     <StyledCircularProgress disableShrink />
   </StyledLoader>
-;
-
-export default Preloader
+);
+export default Preloader;

@@ -1,27 +1,20 @@
 import React from 'react';
-
-import Document, {
-  Head, 
-  Main, 
-  NextScript 
-} from 'next/document';
-
+import Document, { Head, Main, NextScript } from 'next/document';
 import { ServerStyleSheet } from 'styled-components';
-
 import flush from 'styled-jsx/server';
 
 export default class extends Document {
   static getInitialProps({ renderPage }) {
     let pageContext;
-    const sheet = new ServerStyleSheet(),
-    page = renderPage(App => props => {
-        const SiteApp = <App {...props} />;
+    const sheet = new ServerStyleSheet();
 
-        pageContext = props.pageContext;
-        sheet.collectStyles(SiteApp);
-        return SiteApp;
-      }
-    );
+    const page = renderPage(App => props => {
+      const SiteApp = <App {...props} />;
+
+      pageContext = props.pageContext;
+      sheet.collectStyles(SiteApp);
+      return SiteApp;
+    });
 
     return {
       ...page,
@@ -31,8 +24,9 @@ export default class extends Document {
         <>
           <style
             id="Mui-SSR"
+            // eslint-disable-next-line react/no-danger
             dangerouslySetInnerHTML={{
-               __html: pageContext.sheetsRegistry.toString() 
+              __html: pageContext.sheetsRegistry.toString(),
             }}
           />
           {flush() || null}
@@ -42,10 +36,7 @@ export default class extends Document {
   }
 
   render() {
-    const { 
-      pageContext,
-      styleTag
-    } = this.props;
+    const { pageContext, styleTag } = this.props;
 
     return (
       <html lang="en" dir="ltr">
@@ -60,10 +51,7 @@ export default class extends Document {
             rel="stylesheet"
             href="https://fonts.googleapis.com/css?family=Roboto:300,400,500"
           />
-          <link
-            rel="stylesheet"
-            href="/static/css/nprogress.css"
-          />
+          <link rel="stylesheet" href="/static/css/nprogress.css" />
           {styleTag}
         </Head>
         <body>

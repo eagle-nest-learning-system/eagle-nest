@@ -1,20 +1,17 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
-import DrawerList from './DrawerList';
+import DrawerList from "./DrawerList";
 
-import { 
-  IconButton,
-  SwipeableDrawer 
-} from '@material-ui/core';
-import { MenuOutlined as MenuIcon } from '@material-ui/icons'
+import { IconButton, SwipeableDrawer } from "@material-ui/core";
+import { MenuOutlined as MenuIcon } from "@material-ui/icons";
 
-import ToolbarComponent from '../common/ToolbarComponent';
+import ToolbarComponent from "../common/ToolbarComponent";
 
 export default class Drawer extends Component {
   state = {
     drawerOpened: false
-  }
-  
+  };
+
   openDrawer = () => {
     this.setState({
       drawerOpened: true
@@ -32,23 +29,21 @@ export default class Drawer extends Component {
 
     return (
       <ToolbarComponent>
-        <IconButton
-          color="inherit" 
-          onClick={this.openDrawer}
-        >
+        <IconButton color="inherit" onClick={this.openDrawer}>
           <MenuIcon />
         </IconButton>
-        <SwipeableDrawer 
-          open={drawerOpened} 
-          onOpen={this.openDrawer} 
+        <SwipeableDrawer
+          open={drawerOpened}
+          onOpen={this.openDrawer}
           onClose={this.closeDrawer}
         >
-          <div 
-            tabIndex={0} 
-            role="button" 
-            onClick={this.closeDrawer} 
-            onKeyDown={this.closeDrawer}>
-              <DrawerList />
+          <div
+            tabIndex={0}
+            role="button"
+            onClick={this.closeDrawer}
+            onKeyDown={this.closeDrawer}
+          >
+            <DrawerList />
           </div>
         </SwipeableDrawer>
       </ToolbarComponent>

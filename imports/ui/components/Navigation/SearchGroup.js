@@ -1,19 +1,16 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
-import AnimatedSearchInput from './AnimatedSearchInput';
+import AnimatedSearchInput from "./AnimatedSearchInput";
 
-import { 
-  IconButton, 
-  ClickAwayListener 
-} from '@material-ui/core';
-import { SearchOutlined as SearchIcon } from '@material-ui/icons';
+import { IconButton, ClickAwayListener } from "@material-ui/core";
+import { SearchOutlined as SearchIcon } from "@material-ui/icons";
 
-import ToolbarComponent from '../common/ToolbarComponent';
+import ToolbarComponent from "../common/ToolbarComponent";
 
-import Router from 'next/router';
+import Router from "next/router";
 
-import FormValidator, { initValidationState } from '../common/FormValidator';
-import validationRules from './validationRules';
+import FormValidator, { initValidationState } from "../common/FormValidator";
+import validationRules from "./validationRules";
 
 export default class SearchGroup extends Component {
   state = {
@@ -35,11 +32,11 @@ export default class SearchGroup extends Component {
     });
   };
 
-  updateQuery = e => {
+  updateFieldValues = e => {
     const target = e.target,
-    name = target.name,
-    value = target.value;
-    
+      name = target.name,
+      value = target.value;
+
     this.setState(prevState => ({
       inputs: {
         ...prevState.inputs,
@@ -52,7 +49,7 @@ export default class SearchGroup extends Component {
     }));
   };
 
-  redirectToResultPage = e => {
+  submitForm = e => {
     const { inputs } = this.state;
 
     e.preventDefault();
@@ -78,32 +75,27 @@ export default class SearchGroup extends Component {
   };
 
   render() {
-    const { 
-      searchOpened,
-      inputs  
-    } = this.state;
+    const { searchOpened, inputs } = this.state;
 
     return (
       <ToolbarComponent>
-        <IconButton 
-          color="inherit" 
-          onClick={this.openSearch}
-        >
+        <IconButton color="inherit" onClick={this.openSearch}>
           <SearchIcon />
         </IconButton>
         <ClickAwayListener onClickAway={this.closeSearch}>
-          <AnimatedSearchInput 
-            searchOpened={searchOpened} 
-            query={inputs.query.value} 
-            updateQuery={this.updateQuery}
-            redirectToResultPage={this.redirectToResultPage}
-            closeSearch={this.closeSearch} 
+          <AnimatedSearchInput
+            searchOpened={searchOpened}
+            value={inputs.query.value}
+            onChange={this.updateFieldValues}
+            onSubmit={this.submitForm}
+            onClose={this.closeSearch}
           />
         </ClickAwayListener>
         <FormValidator
           state={inputs}
           rules={validationRules}
           onValidate={this.updateValidationRes}
+          ignoreShouldComponentUpdate
         />
       </ToolbarComponent>
     );

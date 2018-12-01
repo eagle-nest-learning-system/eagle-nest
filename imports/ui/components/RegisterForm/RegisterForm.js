@@ -1,218 +1,182 @@
 import React, { Component } from 'react';
-
 import InputsWrapper from '../common/InputsWrapper';
 import FormValidator, { initValidationState } from '../common/FormValidator';
-
 import validationRules from './validationRules';
-
-import { 
-  Grid, 
+import {
+  Grid,
   TextField,
   MenuItem,
   InputAdornment,
   Button,
-  IconButton 
+  IconButton,
 } from '@material-ui/core';
-import { 
+import {
   VisibilityOutlined as VisibilityIcon,
-  VisibilityOffOutlined as VisibilityOffIcon 
+  VisibilityOffOutlined as VisibilityOffIcon,
 } from '@material-ui/icons';
 
 export default class RegisterForm extends Component {
   state = {
     passwordVisibility: false,
     inputs: {
-      ...initValidationState(validationRules)
+      ...initValidationState(validationRules),
     },
-    pass: false
+    pass: false,
   };
 
-  toggleVisibility = () => {
+  handleVisibilityClick = () => {
     this.setState(prevState => ({
-      passwordVisibility: !prevState.passwordVisibility
+      passwordVisibility: !prevState.passwordVisibility,
     }));
   };
 
-  updateValue = e => {
-    const target = e.target,
-    name = target.name,
-    value = target.value,
-    type = target.type,
-    checked = target.checked;
+  handleChange = e => {
+    const target = e.target;
+    const { name, value } = target;
 
     this.setState(prevState => ({
       inputs: {
         ...prevState.inputs,
         [name]: {
           ...prevState.inputs[name],
-          value: type === 'checkbox' ? checked : value
-        }
-      }
+          value,
+        },
+      },
     }));
   };
 
-  blurValue = e => {
-    const target = e.target,
-    name = target.name;
+  handleBlur = e => {
+    const target = e.target;
+    const { name } = target;
 
     this.setState(prevState => ({
       inputs: {
         ...prevState.inputs,
         [name]: {
           ...prevState.inputs[name],
-          switch: !prevState.inputs[name].switch
-        }
-      }
+          switch: !prevState.inputs[name].switch,
+        },
+      },
     }));
   };
 
-  formSubmit = e => {
+  handleSubmit = e => {
     e.preventDefault();
   };
 
-  updateValidationRes = (name, res) => {
+  handleValidate = (name, res) => {
     let { inputs } = this.state;
 
     inputs = {
       ...inputs,
       [name]: {
         ...inputs[name],
-        ...res
-      }
-    }
+        ...res,
+      },
+    };
 
-    const pass = Object.keys(inputs).filter(key => inputs[key].isInvalid).length <= 0;
-    
+    const pass =
+      Object.keys(inputs).filter(key => inputs[key].isInvalid).length <= 0;
+
     this.setState({
       inputs,
-      pass
+      pass,
     });
   };
 
   render() {
-    const { 
-      passwordVisibility, 
-      inputs,
-      pass
-    } = this.state;
+    const { passwordVisibility, inputs, pass } = this.state;
 
     return (
-      <form onSubmit={this.formSubmit} autoComplete="off">
+      <form onSubmit={this.handleSubmit} autoComplete="off">
         <InputsWrapper>
-          <TextField 
-            label="Name" 
-            margin="dense" 
+          <TextField
+            label="Name"
+            margin="dense"
             name="name"
             value={inputs.name.value}
-            onChange={this.updateValue}
-            onBlur={this.blurValue}
+            onChange={this.handleChange}
+            onBlur={this.handleBlur}
             error={inputs.name.isFakeInvalid}
             helperText={inputs.name.message}
             type="text"
-            fullWidth 
+            fullWidth
           />
-          <TextField 
+          <TextField
             select
-            label="Role" 
-            margin="dense" 
+            label="Role"
+            margin="dense"
             name="role"
             value={inputs.role.value}
-            onChange={this.updateValue}
-            onBlur={this.blurValue}
+            onChange={this.handleChange}
+            onBlur={this.handleBlur}
             error={inputs.role.isFakeInvalid}
             helperText={inputs.role.message}
             fullWidth
           >
-            <MenuItem value="Teacher">
-              Teacher
-            </MenuItem>
-            <MenuItem value="Student">
-              Student
-            </MenuItem>
-            <MenuItem value="Houseparent">
-              Houseparent
-            </MenuItem>
-            <MenuItem value="Parent">
-              Parent
-            </MenuItem>
+            <MenuItem value="Teacher">Teacher</MenuItem>
+            <MenuItem value="Student">Student</MenuItem>
+            <MenuItem value="Houseparent">Houseparent</MenuItem>
+            <MenuItem value="Parent">Parent</MenuItem>
           </TextField>
-          <Grid 
-            container
-            spacing={16}
-          >
-            <Grid 
-              item 
-              xs={12} 
-              md={4}
-            >
-              <TextField 
-                label="Year" 
-                margin="dense" 
+          <Grid container spacing={16}>
+            <Grid item xs={12} md={4}>
+              <TextField
+                label="Year"
+                margin="dense"
                 name="year"
                 value={inputs.year.value}
-                onChange={this.updateValue}
-                onBlur={this.blurValue}
+                onChange={this.handleChange}
+                onBlur={this.handleBlur}
                 error={inputs.year.isFakeInvalid}
                 helperText={inputs.year.message}
                 type="number"
-                fullWidth 
+                fullWidth
               />
             </Grid>
-            <Grid 
-              item 
-              xs={12} 
-              md={4}
-            >
-              <TextField 
-                label="DoB" 
-                margin="dense" 
+            <Grid item xs={12} md={4}>
+              <TextField
+                label="DoB"
+                margin="dense"
                 name="dob"
                 value={inputs.dob.value}
-                onChange={this.updateValue}
-                onBlur={this.blurValue}
+                onChange={this.handleChange}
+                onBlur={this.handleBlur}
                 error={inputs.dob.isFakeInvalid}
                 helperText={inputs.dob.message}
                 type="date"
                 fullWidth
                 InputLabelProps={{
-                  shrink: true
-                }} 
+                  shrink: true,
+                }}
               />
             </Grid>
-            <Grid 
-              item 
-              xs={12} 
-              md={4}
-            >
-              <TextField 
+            <Grid item xs={12} md={4}>
+              <TextField
                 select
-                label="Gender" 
-                margin="dense" 
+                label="Gender"
+                margin="dense"
                 name="gender"
                 value={inputs.gender.value}
-                onChange={this.updateValue}
-                onBlur={this.blurValue}
+                onChange={this.handleChange}
+                onBlur={this.handleBlur}
                 error={inputs.gender.isFakeInvalid}
                 helperText={inputs.gender.message}
                 fullWidth
               >
-                <MenuItem value="Male">
-                  Male
-                </MenuItem>
-                <MenuItem value="Female">
-                  Female
-                </MenuItem>
+                <MenuItem value="Male">Male</MenuItem>
+                <MenuItem value="Female">Female</MenuItem>
               </TextField>
             </Grid>
           </Grid>
           <TextField
-            select 
-            label="School" 
-            margin="dense" 
+            select
+            label="School"
+            margin="dense"
             name="school"
             value={inputs.school.value}
-            onChange={this.updateValue}
-            onBlur={this.blurValue}
+            onChange={this.handleChange}
+            onBlur={this.handleBlur}
             error={inputs.school.isFakeInvalid}
             helperText={inputs.school.message}
             fullWidth
@@ -221,89 +185,88 @@ export default class RegisterForm extends Component {
               Bosworth Independent College
             </MenuItem>
           </TextField>
-          <TextField 
-            label="Email" 
-            margin="dense" 
+          <TextField
+            label="Email"
+            margin="dense"
             name="email"
             value={inputs.email.value}
-            onChange={this.updateValue}
-            onBlur={this.blurValue}
+            onChange={this.handleChange}
+            onBlur={this.handleBlur}
             error={inputs.email.isFakeInvalid}
             helperText={inputs.email.message}
             type="email"
-            fullWidth 
+            fullWidth
           />
-          <TextField 
-            label="Password" 
-            margin="dense" 
+          <TextField
+            label="Password"
+            margin="dense"
             name="password"
             value={inputs.password.value}
-            onChange={this.updateValue}
-            onBlur={this.blurValue}
+            onChange={this.handleChange}
+            onBlur={this.handleBlur}
             error={inputs.password.isFakeInvalid}
             helperText={inputs.password.message}
-            type={passwordVisibility ? "text" : "password"}
+            type={passwordVisibility ? 'text' : 'password'}
             fullWidth
             InputProps={{
-              endAdornment:
+              endAdornment: (
                 <InputAdornment position="end">
-                  <IconButton onClick={this.toggleVisibility}>
-                    {passwordVisibility ?
+                  <IconButton onClick={this.handleVisibilityClick}>
+                    {passwordVisibility ? (
                       <VisibilityIcon />
-                    :           
+                    ) : (
                       <VisibilityOffIcon />
-                    }
+                    )}
                   </IconButton>
                 </InputAdornment>
-            }} 
+              ),
+            }}
           />
-          <TextField 
-            label="Confirm password" 
-            margin="dense" 
+          <TextField
+            label="Confirm password"
+            margin="dense"
             name="confirmPassword"
             value={inputs.confirmPassword.value}
-            onChange={this.updateValue}
-            onBlur={this.blurValue}
+            onChange={this.handleChange}
+            onBlur={this.handleBlur}
             error={inputs.confirmPassword.isFakeInvalid}
             helperText={inputs.confirmPassword.message}
-            type={passwordVisibility ? "text" : "password"}
+            type={passwordVisibility ? 'text' : 'password'}
             fullWidth
           />
-          <TextField 
+          <TextField
             label="Phone number"
             margin="dense"
             name="number"
             value={inputs.number.value}
-            onChange={this.updateValue}
-            onBlur={this.blurValue}
+            onChange={this.handleChange}
+            onBlur={this.handleBlur}
             error={inputs.number.isFakeInvalid}
             helperText={inputs.number.message}
             InputProps={{
-              startAdornment:
-                <InputAdornment position="start">
-                  +44
-                </InputAdornment>
+              startAdornment: (
+                <InputAdornment position="start">+44</InputAdornment>
+              ),
             }}
-            fullWidth 
+            fullWidth
           />
-          <TextField 
-            label="Extra details (Optional)" 
-            margin="dense" 
+          <TextField
+            label="Extra details (Optional)"
+            margin="dense"
             multiline
             rows={4}
             name="details"
             value={inputs.details.value}
-            onChange={this.updateValue}
-            onBlur={this.blurValue}
+            onChange={this.handleChange}
+            onBlur={this.handleBlur}
             error={inputs.details.isFakeInvalid}
             helperText={
-              inputs.details.message === '' 
-              ? 
-                'When submitted, your information will be sent to the school\'s IT administrator for confirmation. Extra details are useful and might reduce the confirmation time' 
-              : 
-                inputs.details.message
+              inputs.details.message === ''
+                // eslint-disable-next-line max-len
+                ? 'When submitted, your information will be sent to the school\'s IT administrator for confirmation. Extra details are useful and might reduce the confirmation time'
+                : inputs.details.message
             }
-            fullWidth 
+            fullWidth
           />
         </InputsWrapper>
         <Button
@@ -314,10 +277,10 @@ export default class RegisterForm extends Component {
         >
           Register
         </Button>
-        <FormValidator 
-          state={inputs} 
-          rules={validationRules} 
-          onValidate={this.updateValidationRes}
+        <FormValidator
+          state={inputs}
+          rules={validationRules}
+          onValidate={this.handleValidate}
         />
       </form>
     );

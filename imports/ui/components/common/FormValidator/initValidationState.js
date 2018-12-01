@@ -1,16 +1,18 @@
-export default rules => {
-  const keys = Object.keys(rules),
-  validationState = {};
+export default (rules, customState) => {
+  const keys = Object.keys(rules);
+  const validationState = {};
 
-  for (let key of keys) {
+  for (const key of keys) {
     validationState[key] = {
       value: '',
+      isFileList: false,
       switch: false,
       isFakeInvalid: false,
       isInvalid: !rules[key].optional,
       message: '',
+      ...customState,
     };
   }
 
   return validationState;
-}
+};

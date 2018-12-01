@@ -1,17 +1,16 @@
 import React from 'react';
-
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
-
 import { fade } from '@material-ui/core/styles/colorManipulator';
 import theme from '../../../theme';
 
 const StyledBackground = styled.div`
-  background: url(${({ image }) => image}) center/cover no-repeat fixed;
+  background: url(${({ src }) => src}) center/cover no-repeat fixed;
   position: absolute;
   width: 100%;
   height: 100%;
   &:after {
-    content: '';
+    content: "";
     display: block;
     position: absolute;
     width: 100%;
@@ -20,6 +19,10 @@ const StyledBackground = styled.div`
   }
 `;
 
-const Background = ({ image }) => <StyledBackground image={image} />;
+const Background = ({ src }) => <StyledBackground src={src} />;
 
-export default Background
+Background.propTypes = {
+  src: PropTypes.string.isRequired,
+};
+
+export default Background;

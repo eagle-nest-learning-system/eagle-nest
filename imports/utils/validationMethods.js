@@ -1,3 +1,4 @@
-import { isAlpha, equals } from 'validator';
+import { isAlpha } from 'validator';
 
-export const isAlphaSpace = str => str.split(" ").every(word => isAlpha(word));
+// eslint-disable-next-line import/prefer-default-export
+export const isAlphaSpace = str => str.split(' ').every(word => isAlpha(word));
