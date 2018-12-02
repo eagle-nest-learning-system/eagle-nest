@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import FileUploadButton from '../FileUploadButton';
-import ImagePreviewer from './ImagePreviewer';
+import AnimatedImagePreviewer from './AnimatedImagePreviewer';
 import { Typography, Button } from '@material-ui/core';
 import theme from '../../../theme';
 import { Transition } from 'react-spring';
@@ -89,7 +89,7 @@ class ImageUploader extends Component {
             }}
           >
             {image => style => (
-              <ImagePreviewer
+              <AnimatedImagePreviewer
                 src={image.url}
                 image={image}
                 onRemove={this.handleRemove}

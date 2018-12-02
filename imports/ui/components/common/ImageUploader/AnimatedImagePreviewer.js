@@ -17,7 +17,7 @@ const StyledImagePreviewer = animated(
     height: 100%;
   `;
 
-class ImagePreviewer extends Component {
+class AnimatedImagePreviewer extends Component {
   state = {
     actionsOpened: false,
   };
@@ -59,11 +59,11 @@ class ImagePreviewer extends Component {
   }
 }
 
-ImagePreviewer.propTypes = {
+AnimatedImagePreviewer.propTypes = {
   image: PropTypes.object.isRequired,
   onRemove: PropTypes.func.isRequired,
   src: PropTypes.string.isRequired,
   style: PropTypes.object.isRequired,
 };
 
-export default ImagePreviewer;
+export default AnimatedImagePreviewer;
