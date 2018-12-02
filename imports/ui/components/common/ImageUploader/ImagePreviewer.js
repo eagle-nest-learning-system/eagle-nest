@@ -45,15 +45,13 @@ class ImagePreviewer extends Component {
           <Spring
             native
             from={{
-              scale: 0,
+              transform: 'scale(0)',
             }}
             to={{
-              scale: actionsOpened ? 1 : 0,
+              transform: `scale(${actionsOpened ? 1 : 0})`,
             }}
           >
-            {({ scale }) => (
-              <AnimatedImageActions scale={scale} image={image} onRemove={onRemove} />
-            )}
+            {style => <AnimatedImageActions style={style} image={image} onRemove={onRemove} />}
           </Spring>
         </StyledImagePreviewer>
       </ClickAwayListener>

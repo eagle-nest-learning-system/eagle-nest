@@ -80,13 +80,13 @@ export default class SearchGroup extends Component {
         <ClickAwayListener onClickAway={this.handleCloseSearch}>
           <Spring
             native
-            from={{ ypos: -110 }}
-            to={{ ypos: searchOpened ? 0 : -110 }}
+            from={{ transform: 'translateY(-110%)' }}
+            to={{ transform: `translateY(${searchOpened ? 0 : '-110%'})` }}
             config={config.wobbly}
           >
-            {({ ypos }) => (
+            {style => (
               <AnimatedSearchInput
-                ypos={ypos}
+                style={style}
                 value={inputs.query.value}
                 onChange={this.handleChange}
                 onSubmit={this.handleSubmit}

@@ -5,8 +5,8 @@ import ToolbarComponent from '../common/ToolbarComponent';
 
 const Title = () => (
   <ToolbarComponent stretch flex hiddenOverflow>
-    <Spring native from={{ xpos: -100 }} to={{ xpos: 0 }}>
-      {({ xpos }) => <AnimatedTitle xpos={xpos} />}
+    <Spring native from={{ transform: 'translateX(-100%)' }} to={{ transform: 'translateX(0%)' }}>
+      {style => <AnimatedTitle style={style} />}
     </Spring>
   </ToolbarComponent>
 );

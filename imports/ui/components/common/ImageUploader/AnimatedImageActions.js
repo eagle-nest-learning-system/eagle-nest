@@ -25,12 +25,8 @@ const StyledImageActions = animated(
   StyledDeleteIcon = styled(DeleteIcon)`
     margin-right: ${theme.spacing.unit}px;
   `,
-  AnimatedImageActions = ({ scale, onRemove, image }) => (
-    <StyledImageActions
-      style={{
-        transform: scale.interpolate(x => `scale(${x})`),
-      }}
-    >
+  AnimatedImageActions = ({ style, onRemove, image }) => (
+    <StyledImageActions style={style}>
       <StyledImageActionsInner>
         <Button color="inherit" onClick={onRemove(image)}>
           <StyledDeleteIcon />
@@ -43,7 +39,7 @@ const StyledImageActions = animated(
 AnimatedImageActions.propTypes = {
   image: PropTypes.object.isRequired,
   onRemove: PropTypes.func.isRequired,
-  scale: PropTypes.object.isRequired,
+  style: PropTypes.object.isRequired,
 };
 
 export default AnimatedImageActions;

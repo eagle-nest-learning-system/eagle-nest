@@ -45,12 +45,10 @@ const StyledNavigationButtonWrapper = styled.div`
       left: 0;
     `,
   ),
-  AnimatedSearchInput = ({ ypos, value, onChange, onSubmit, onClose }) => (
+  AnimatedSearchInput = ({ style, value, onChange, onSubmit, onClose }) => (
     <StyledNavigationSearchWrapper
       square
-      style={{
-        transform: ypos.interpolate(x => `translateY(${x}%)`),
-      }}
+      style={style}
       method="get"
       onSubmit={onSubmit}
       autoComplete="off"
@@ -74,8 +72,8 @@ AnimatedSearchInput.propTypes = {
   onChange: PropTypes.func.isRequired,
   onClose: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
+  style: PropTypes.object.isRequired,
   value: PropTypes.string.isRequired,
-  ypos: PropTypes.object.isRequired,
 };
 
 export default AnimatedSearchInput;

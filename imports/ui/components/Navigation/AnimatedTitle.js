@@ -13,23 +13,16 @@ const StyledNavigationTitle = animated(
       }
     `,
   ),
-  AnimatedTitle = ({ xpos }) => (
+  AnimatedTitle = ({ style }) => (
     <Link href="/">
-      <StyledNavigationTitle
-        style={{
-          transform: xpos.interpolate(x => `translateX(${x}%)`),
-        }}
-        variant="h4"
-        component="h1"
-        color="inherit"
-      >
+      <StyledNavigationTitle style={style} variant="h4" component="h1" color="inherit">
         Eagle Nest
       </StyledNavigationTitle>
     </Link>
   );
 
 AnimatedTitle.propTypes = {
-  xpos: PropTypes.object.isRequired,
+  style: PropTypes.object.isRequired,
 };
 
 export default AnimatedTitle;
