@@ -3,15 +3,12 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Button } from '@material-ui/core';
 import { CloudUploadOutlined as CloudUploadIcon } from '@material-ui/icons';
-import theme from '../../../theme';
+import InlineIcon from '../InlineIcon';
 
 const StyledFileInput = styled.input.attrs({
     type: 'file',
   })`
     display: none;
-  `,
-  StyledUploadIcon = styled(CloudUploadIcon)`
-    margin-right: ${theme.spacing.unit}px;
   `,
   FileUploadButton = ({ id, multiple, name, onChange, onBlur }) => (
     <>
@@ -24,7 +21,7 @@ const StyledFileInput = styled.input.attrs({
       />
       <label htmlFor={id}>
         <Button variant="contained" component="span">
-          <StyledUploadIcon />
+          <InlineIcon icon={<CloudUploadIcon />} />
           Upload
         </Button>
       </label>
