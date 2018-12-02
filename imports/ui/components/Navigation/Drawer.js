@@ -1,26 +1,23 @@
-import React, { Component } from "react";
-
-import DrawerList from "./DrawerList";
-
-import { IconButton, SwipeableDrawer } from "@material-ui/core";
-import { MenuOutlined as MenuIcon } from "@material-ui/icons";
-
-import ToolbarComponent from "../common/ToolbarComponent";
+import React, { Component } from 'react';
+import DrawerList from './DrawerList';
+import { IconButton, SwipeableDrawer } from '@material-ui/core';
+import { MenuOutlined as MenuIcon } from '@material-ui/icons';
+import ToolbarComponent from '../common/ToolbarComponent';
 
 export default class Drawer extends Component {
   state = {
-    drawerOpened: false
+    drawerOpened: false,
   };
 
-  openDrawer = () => {
+  handleOpenDrawer = () => {
     this.setState({
-      drawerOpened: true
+      drawerOpened: true,
     });
   };
 
-  closeDrawer = () => {
+  handleCloseDrawer = () => {
     this.setState({
-      drawerOpened: false
+      drawerOpened: false,
     });
   };
 
@@ -29,19 +26,19 @@ export default class Drawer extends Component {
 
     return (
       <ToolbarComponent>
-        <IconButton color="inherit" onClick={this.openDrawer}>
+        <IconButton color="inherit" onClick={this.handleOpenDrawer}>
           <MenuIcon />
         </IconButton>
         <SwipeableDrawer
           open={drawerOpened}
-          onOpen={this.openDrawer}
-          onClose={this.closeDrawer}
+          onOpen={this.handleOpenDrawer}
+          onClose={this.handleCloseDrawer}
         >
           <div
             tabIndex={0}
             role="button"
-            onClick={this.closeDrawer}
-            onKeyDown={this.closeDrawer}
+            onClick={this.handleCloseDrawer}
+            onKeyDown={this.handleCloseDrawer}
           >
             <DrawerList />
           </div>

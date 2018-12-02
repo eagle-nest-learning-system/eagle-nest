@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { createStore } from 'redux';
 import rootReducer from '../ui/root-controllers';
 
-const initializeStore = () => createStore(rootReducer);
-const isServer = !process.browser;
-const getStore = () => {
+const initializeStore = () => createStore(rootReducer),
+  isServer = !process.browser,
+  getStore = () => {
     if (isServer) {
       return initializeStore();
     }

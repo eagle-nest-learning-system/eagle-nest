@@ -22,17 +22,12 @@ const StyledToolbarComponent = styled.div`
     css`
       overflow: hidden;
     `}
-`;
-
-const ToolbarComponent = ({ stretch, flex, hiddenOverflow, children }) => (
-  <StyledToolbarComponent
-    stretch={stretch}
-    flex={flex}
-    hiddenOverflow={hiddenOverflow}
-  >
-    {children}
-  </StyledToolbarComponent>
-);
+`,
+  ToolbarComponent = ({ stretch, flex, hiddenOverflow, children }) => (
+    <StyledToolbarComponent stretch={stretch} flex={flex} hiddenOverflow={hiddenOverflow}>
+      {children}
+    </StyledToolbarComponent>
+  );
 
 ToolbarComponent.propTypes = {
   children: PropTypes.node.isRequired,

@@ -13,8 +13,8 @@ export default class RegisterForm extends Component {
   };
 
   handleChange = e => {
-    const target = e.target;
-    const { name, value } = target;
+    const target = e.target,
+      { name, value } = target;
 
     this.setState(prevState => ({
       inputs: {
@@ -28,8 +28,8 @@ export default class RegisterForm extends Component {
   };
 
   handleBlur = e => {
-    const target = e.target;
-    const { name } = target;
+    const target = e.target,
+      { name } = target;
 
     this.setState(prevState => ({
       inputs: {
@@ -57,8 +57,7 @@ export default class RegisterForm extends Component {
       },
     };
 
-    const pass =
-      Object.keys(inputs).filter(key => inputs[key].isInvalid).length <= 0;
+    const pass = Object.keys(inputs).filter(key => inputs[key].isInvalid).length <= 0;
 
     this.setState({
       inputs,
@@ -113,9 +112,7 @@ export default class RegisterForm extends Component {
             helperText={inputs.school.message}
             fullWidth
           >
-            <MenuItem value="Bosworth Independent College">
-              Bosworth Independent College
-            </MenuItem>
+            <MenuItem value="Bosworth Independent College">Bosworth Independent College</MenuItem>
           </TextField>
           <TextField
             label="Email"
@@ -158,19 +155,10 @@ export default class RegisterForm extends Component {
             fullWidth
           />
         </InputsWrapper>
-        <Button
-          type="submit"
-          variant="contained"
-          color="primary"
-          disabled={!pass}
-        >
+        <Button type="submit" variant="contained" color="primary" disabled={!pass}>
           Submit
         </Button>
-        <FormValidator
-          state={inputs}
-          rules={validationRules}
-          onValidate={this.handleValidate}
-        />
+        <FormValidator state={inputs} rules={validationRules} onValidate={this.handleValidate} />
       </form>
     );
   }

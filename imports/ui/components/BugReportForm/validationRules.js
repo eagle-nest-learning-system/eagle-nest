@@ -11,8 +11,7 @@ export default {
       {
         method: isAlphaSpace,
         validWhen: true,
-        message:
-          'This field should not contain any special characters and numbers',
+        message: 'This field should not contain any special characters and numbers',
       },
     ],
   },
@@ -83,8 +82,7 @@ export default {
           },
         ],
         validWhen: true,
-        message:
-          'This field should not be shorter than 30 and longer than 150 characters!',
+        message: 'This field should not be shorter than 30 and longer than 150 characters!',
       },
     ],
   },

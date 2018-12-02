@@ -8,9 +8,11 @@
   "plugins": ["babel", "import", "jsx-a11y", "material-ui"],
   "rules": {
     "linebreak-style": "off",
+    "one-var": "off",
     "no-underscore-dangle": "off",
     "no-restricted-syntax": "off",
-    "prefer-destructuring": "off",
+    "no-return-assign": "off",
+    "no-shadow": "off",
     "arrow-body-style": "off",
     "arrow-parens": "off",
     "object-curly-newline": "off",
@@ -22,7 +24,7 @@
     "no-mixed-operators": "off",
     "consistent-this": ["error", "self"],
     "max-len": [
-      "warn",
+      "error",
       100,
       2,
       {
@@ -30,6 +32,7 @@
       }
     ],
     "no-console": "error",
+    "prefer-destructuring": "off",
     "no-alert": "error",
     "no-param-reassign": "off",
     "no-prototype-builtins": "off",

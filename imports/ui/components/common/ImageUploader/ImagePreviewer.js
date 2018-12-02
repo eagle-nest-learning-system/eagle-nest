@@ -1,59 +1,71 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import styled from 'styled-components';
+import AnimatedImageActions from './AnimatedImageActions';
+import { ClickAwayListener } from '@material-ui/core';
+import { Spring, animated } from 'react-spring';
 
-import styled from "styled-components";
+const StyledImagePreviewer = animated(
+    styled.div`
+      position: relative;
+      user-select: none;
+      height: 128px;
+      cursor: pointer;
+    `,
+  ),
+  StyledImage = styled.img`
+    height: 100%;
+  `;
 
-import AnimatedImageActions from "./AnimatedImageActions";
-
-import { ClickAwayListener } from "@material-ui/core";
-import theme from "../../../theme";
-
-const StyledImagePreviewer = styled.div`
-  position: relative;
-  user-select: none;
-  overflow: hidden;
-  cursor: pointer;
-
-  &:not(:last-child) {
-    margin-right: ${theme.spacing.unit * 2}px;
-  }
-`;
-
-const StyledImage = styled.img`
-  height: 100%;
-`;
-
-export default class ImagePreviewer extends Component {
+class ImagePreviewer extends Component {
   state = {
-    actionsOpened: false
+    actionsOpened: false,
   };
 
-  openActions = () => {
+  handleOpenActions = () => {
     this.setState({
-      actionsOpened: true
+      actionsOpened: true,
     });
   };
 
-  closeActions = () => {
+  handleCloseActions = () => {
     this.setState({
-      actionsOpened: false
+      actionsOpened: false,
     });
   };
 
   render() {
-    const { actionsOpened } = this.state,
-      { src, image, onRemove, style } = this.props;
+    const { actionsOpened } = this.state;
+    const { src, image, onRemove, style } = this.props;
 
     return (
-      <ClickAwayListener onClickAway={this.closeActions}>
-        <StyledImagePreviewer onClick={this.openActions} style={style}>
+      <ClickAwayListener onClickAway={this.handleCloseActions}>
+        <StyledImagePreviewer onClick={this.handleOpenActions} style={style}>
           <StyledImage src={src} />
-          <AnimatedImageActions
-            actionsOpened={actionsOpened}
-            image={image}
-            onRemove={onRemove}
-          />
+          <Spring
+            native
+            from={{
+              scale: 0,
+            }}
+            to={{
+              scale: actionsOpened ? 1 : 0,
+            }}
+          >
+            {({ scale }) => (
+              <AnimatedImageActions scale={scale} image={image} onRemove={onRemove} />
+            )}
+          </Spring>
         </StyledImagePreviewer>
       </ClickAwayListener>
     );
   }
 }
+
+ImagePreviewer.propTypes = {
+  image: PropTypes.object.isRequired,
+  onRemove: PropTypes.func.isRequired,
+  src: PropTypes.string.isRequired,
+  style: PropTypes.object.isRequired,
+};
+
+export default ImagePreviewer;

@@ -1,1 +1,1 @@
-export { default } from "./ImageUploader";
+export { default } from './ImageUploader';

@@ -1,41 +1,36 @@
-import React, { Component } from "react";
-
-import AnimatedSearchInput from "./AnimatedSearchInput";
-
-import { IconButton, ClickAwayListener } from "@material-ui/core";
-import { SearchOutlined as SearchIcon } from "@material-ui/icons";
-
-import ToolbarComponent from "../common/ToolbarComponent";
-
-import Router from "next/router";
-
-import FormValidator, { initValidationState } from "../common/FormValidator";
-import validationRules from "./validationRules";
+import React, { Component } from 'react';
+import AnimatedSearchInput from './AnimatedSearchInput';
+import { IconButton, ClickAwayListener } from '@material-ui/core';
+import { SearchOutlined as SearchIcon } from '@material-ui/icons';
+import ToolbarComponent from '../common/ToolbarComponent';
+import Router from 'next/router';
+import FormValidator, { initValidationState } from '../common/FormValidator';
+import validationRules from './validationRules';
+import { Spring, config } from 'react-spring';
 
 export default class SearchGroup extends Component {
   state = {
     searchOpened: false,
     inputs: {
-      ...initValidationState(validationRules)
-    }
+      ...initValidationState(validationRules),
+    },
   };
 
-  openSearch = () => {
+  handleOpenSearch = () => {
     this.setState({
-      searchOpened: true
+      searchOpened: true,
     });
   };
 
-  closeSearch = () => {
+  handleCloseSearch = () => {
     this.setState({
-      searchOpened: false
+      searchOpened: false,
     });
   };
 
-  updateFieldValues = e => {
+  handleChange = e => {
     const target = e.target,
-      name = target.name,
-      value = target.value;
+      { name, value } = target;
 
     this.setState(prevState => ({
       inputs: {
@@ -43,13 +38,13 @@ export default class SearchGroup extends Component {
         [name]: {
           ...prevState.inputs[name],
           value,
-          switch: !prevState.inputs[name].switch
-        }
-      }
+          switch: !prevState.inputs[name].switch,
+        },
+      },
     }));
   };
 
-  submitForm = e => {
+  handleSubmit = e => {
     const { inputs } = this.state;
 
     e.preventDefault();
@@ -58,19 +53,19 @@ export default class SearchGroup extends Component {
       const encodedKeyword = encodeURIComponent(inputs.query.value);
 
       Router.push(`/results?query=${encodedKeyword}`);
-      this.closeSearch();
+      this.handleCloseSearch();
     }
   };
 
-  updateValidationRes = (name, res) => {
+  handleValidate = (name, res) => {
     this.setState(prevState => ({
       inputs: {
         ...prevState.inputs,
         [name]: {
           ...prevState.inputs[name],
-          ...res
-        }
-      }
+          ...res,
+        },
+      },
     }));
   };
 
@@ -79,22 +74,31 @@ export default class SearchGroup extends Component {
 
     return (
       <ToolbarComponent>
-        <IconButton color="inherit" onClick={this.openSearch}>
+        <IconButton color="inherit" onClick={this.handleOpenSearch}>
           <SearchIcon />
         </IconButton>
-        <ClickAwayListener onClickAway={this.closeSearch}>
-          <AnimatedSearchInput
-            searchOpened={searchOpened}
-            value={inputs.query.value}
-            onChange={this.updateFieldValues}
-            onSubmit={this.submitForm}
-            onClose={this.closeSearch}
-          />
+        <ClickAwayListener onClickAway={this.handleCloseSearch}>
+          <Spring
+            native
+            from={{ ypos: -110 }}
+            to={{ ypos: searchOpened ? 0 : -110 }}
+            config={config.wobbly}
+          >
+            {({ ypos }) => (
+              <AnimatedSearchInput
+                ypos={ypos}
+                value={inputs.query.value}
+                onChange={this.handleChange}
+                onSubmit={this.handleSubmit}
+                onClose={this.handleCloseSearch}
+              />
+            )}
+          </Spring>
         </ClickAwayListener>
         <FormValidator
           state={inputs}
           rules={validationRules}
-          onValidate={this.updateValidationRes}
+          onValidate={this.handleValidate}
           ignoreShouldComponentUpdate
         />
       </ToolbarComponent>

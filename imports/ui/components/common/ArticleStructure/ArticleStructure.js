@@ -9,40 +9,36 @@ import styled from 'styled-components';
 import { connect } from 'react-redux';
 
 const StyledArticleWrapper = styled(Paper)`
-  width: 800px;
-  padding: ${theme.spacing.unit * 6}px;
-  margin: auto;
+    width: 800px;
+    padding: ${theme.spacing.unit * 6}px;
+    margin: auto;
 
-  @media (max-width: ${theme.breakpoints.values.sm}px) {
-    min-height: 100%;
-    padding: ${theme.spacing.unit * 4}px;
-  }
-`;
+    @media (max-width: ${theme.breakpoints.values.sm}px) {
+      min-height: 100%;
+      padding: ${theme.spacing.unit * 4}px;
+    }
+  `,
+  mapStateToProps = state => ({
+    viewportWidth: state.app.viewportWidth,
+    navigationHeight: state.navigation.navigationHeight,
+  }),
+  ArticleStructure = ({ children, navigationHeight, viewportWidth }) => {
+    const isMobile = viewportWidth < theme.breakpoints.values.sm;
 
-const mapStateToProps = state => ({
-  viewportWidth: state.app.viewportWidth,
-  navigationHeight: state.navigation.navigationHeight,
-});
-
-const ArticleStructure = ({ children, navigationHeight, viewportWidth }) => {
-  const isMobile = viewportWidth < theme.breakpoints.values.sm;
-
-  return (
-    <MainContentWrapper pushHeight={navigationHeight}>
-      <ArticleBackground />
-      <MainContentInner noGutterOnMobile>
-        <StyledArticleWrapper square={isMobile}>
-          {children}
-        </StyledArticleWrapper>
-      </MainContentInner>
-    </MainContentWrapper>
-  );
-};
+    return (
+      <MainContentWrapper pushHeight={navigationHeight}>
+        <ArticleBackground />
+        <MainContentInner noGutterOnMobile>
+          <StyledArticleWrapper square={isMobile}>{children}</StyledArticleWrapper>
+        </MainContentInner>
+      </MainContentWrapper>
+    );
+  };
 
 ArticleStructure.propTypes = {
   children: PropTypes.node.isRequired,
-  navigationHeight: PropTypes.number.isRequired,
-  viewportWidth: PropTypes.number.isRequired,
+  navigationHeight: PropTypes.number,
+  viewportWidth: PropTypes.number,
 };
 
 export default connect(

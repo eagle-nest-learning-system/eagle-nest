@@ -6,15 +6,14 @@ import flush from 'styled-jsx/server';
 export default class extends Document {
   static getInitialProps({ renderPage }) {
     let pageContext;
-    const sheet = new ServerStyleSheet();
+    const sheet = new ServerStyleSheet(),
+      page = renderPage(App => props => {
+        const SiteApp = <App {...props} />;
 
-    const page = renderPage(App => props => {
-      const SiteApp = <App {...props} />;
-
-      pageContext = props.pageContext;
-      sheet.collectStyles(SiteApp);
-      return SiteApp;
-    });
+        pageContext = props.pageContext;
+        sheet.collectStyles(SiteApp);
+        return SiteApp;
+      });
 
     return {
       ...page,

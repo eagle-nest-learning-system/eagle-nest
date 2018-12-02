@@ -1,84 +1,63 @@
-import React, { Component } from "react";
-
-import styled from "styled-components";
-
-import FileUploadButton from "../FileUploadButton";
-import ImagePreviewer from "./ImagePreviewer";
-
-import { Typography, Button } from "@material-ui/core";
-import theme from "../../../theme";
-
-import { TransitionMotion, spring } from "react-motion";
-
-import uuidv5 from "uuid/v5";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import styled from 'styled-components';
+import FileUploadButton from '../FileUploadButton';
+import ImagePreviewer from './ImagePreviewer';
+import { Typography, Button } from '@material-ui/core';
+import theme from '../../../theme';
+import { Transition } from 'react-spring';
+import uuidv5 from 'uuid/v5';
 
 const StyledPreviewerContainer = styled.div`
-  display: flex;
-  margin: ${theme.spacing.unit}px 0;
-  overflow: hidden;
-  overflow-x: auto;
-`;
+    display: flex;
+    margin: ${theme.spacing.unit}px -${theme.spacing.unit}px;
+    overflow: hidden;
+    overflow-x: auto;
+  `,
+  StyledRemoveAllButton = styled(Button)`
+    && {
+      margin-left: ${theme.spacing.unit * 2}px;
+    }
+  `;
 
-const StyledRemoveAllButton = styled(Button)`
-  && {
-    margin-left: ${theme.spacing.unit * 2}px;
-  }
-`;
-
-export default class ImageUploader extends Component {
+class ImageUploader extends Component {
   state = {
-    uploadedImages: []
+    uploadedImages: [],
   };
 
-  uploadImages = e => {
+  handleChange = e => {
     const { uploadedImages } = this.state,
-      files = [...e.target.files],
+      target = e.target,
+      files = [...target.files],
       pendingImages = files
         .map(image => ({
           info: image,
-          url: URL.createObjectURL(image)
+          url: URL.createObjectURL(image),
         }))
         .filter(image => uploadedImages.indexOf(image) === -1);
 
-    this.setState(
-      prevState => ({
-        uploadedImages: [...prevState.uploadedImages, ...pendingImages]
-      }),
-      () => {
-        console.log(this.state);
-      }
-    );
+    this.setState(prevState => ({
+      uploadedImages: [...prevState.uploadedImages, ...pendingImages],
+    }));
+
+    target.value = '';
 
     this.props.onChange(e);
   };
 
-  removeImage = image => () => {
+  handleRemove = image => () => {
     const { uploadedImages } = this.state,
       imageIndex = uploadedImages.indexOf(image);
 
-    this.setState(
-      prevState => ({
-        uploadedImages: prevState.uploadedImages.filter(
-          (image, index) => index !== imageIndex
-        )
-      }),
-      () => {
-        console.log(this.state);
-      }
-    );
+    this.setState(prevState => ({
+      uploadedImages: prevState.uploadedImages.filter((image, index) => index !== imageIndex),
+    }));
   };
 
-  removeAllImages = () => {
+  handleRemoveAllClick = () => {
     this.setState({
-      uploadedImages: []
+      uploadedImages: [],
     });
-  };
-
-  willLeave = () => {
-    return {
-      height: spring(0),
-      opacity: spring(0)
-    };
   };
 
   render() {
@@ -89,42 +68,45 @@ export default class ImageUploader extends Component {
       <div className={className}>
         <Typography>{label}</Typography>
         <StyledPreviewerContainer>
-          <TransitionMotion
-            willEnter={this.willEnter}
-            willLeave={this.willLeave}
-            styles={uploadedImages.map(image => ({
-              key: uuidv5(image.info.name, uuidv5.URL),
-              data: image,
-              style: {
-                height: spring(128),
-                opacity: spring(1)
-              }
-            }))}
+          <Transition
+            native
+            keys={image => uuidv5(image.info.name, uuidv5.URL)}
+            items={uploadedImages}
+            from={{
+              height: 0,
+              opacity: 0,
+              margin: '0px 0px',
+            }}
+            enter={{
+              height: 128,
+              opacity: 1,
+              margin: `0 ${theme.spacing.unit}px`,
+            }}
+            leave={{
+              height: 0,
+              opacity: 0,
+              margin: '0px 0px',
+            }}
           >
-            {interpolatedStyles => (
-              <>
-                {interpolatedStyles.map(({ key, data, style }) => (
-                  <ImagePreviewer
-                    src={data.url}
-                    image={data}
-                    onRemove={this.removeImage}
-                    key={key}
-                    style={style}
-                  />
-                ))}
-              </>
+            {image => style => (
+              <ImagePreviewer
+                src={image.url}
+                image={image}
+                onRemove={this.handleRemove}
+                style={style}
+              />
             )}
-          </TransitionMotion>
+          </Transition>
         </StyledPreviewerContainer>
         <FileUploadButton
           id={id}
           multiple={multiple}
           name={name}
-          onChange={this.uploadImages}
+          onChange={this.handleChange}
           onBlur={onBlur}
         />
         {uploadedImages.length >= 2 && (
-          <StyledRemoveAllButton onClick={this.removeAllImages}>
+          <StyledRemoveAllButton onClick={this.handleRemoveAllClick}>
             Delete all
           </StyledRemoveAllButton>
         )}
@@ -132,3 +114,19 @@ export default class ImageUploader extends Component {
     );
   }
 }
+
+ImageUploader.propTypes = {
+  className: PropTypes.string,
+  id: PropTypes.string.isRequired,
+  label: PropTypes.string.isRequired,
+  multiple: PropTypes.bool,
+  name: PropTypes.string.isRequired,
+  onBlur: PropTypes.func.isRequired,
+  onChange: PropTypes.func.isRequired,
+};
+
+ImageUploader.defaultProps = {
+  multiple: false,
+};
+
+export default ImageUploader;

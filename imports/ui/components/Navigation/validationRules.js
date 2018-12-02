@@ -2,9 +2,9 @@ export default {
   query: {
     conditions: [
       {
-        method: "isEmpty",
-        validWhen: false
-      }
-    ]
-  }
+        method: 'isEmpty',
+        validWhen: false,
+      },
+    ],
+  },
 };

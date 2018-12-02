@@ -1,6 +1,6 @@
 export default (rules, customState) => {
-  const keys = Object.keys(rules);
-  const validationState = {};
+  const keys = Object.keys(rules),
+    validationState = {};
 
   for (const key of keys) {
     validationState[key] = {

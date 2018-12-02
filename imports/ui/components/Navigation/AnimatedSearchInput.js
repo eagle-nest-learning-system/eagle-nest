@@ -1,95 +1,81 @@
-import React from "react";
-
-import styled from "styled-components";
-
-import { Paper, IconButton, InputBase } from "@material-ui/core";
-import { CloseOutlined as CloseIcon } from "@material-ui/icons";
-import theme from "../../theme";
-
-import { Motion, spring } from "react-motion";
+import React from 'react';
+import PropTypes from 'prop-types';
+import styled from 'styled-components';
+import { Paper, IconButton, InputBase } from '@material-ui/core';
+import { CloseOutlined as CloseIcon } from '@material-ui/icons';
+import theme from '../../theme';
+import { animated } from 'react-spring';
 
 const StyledNavigationButtonWrapper = styled.div`
-  position: absolute;
-  height: 100%;
-  top: 0;
-  right: 0;
-  padding-right: ${theme.spacing.unit * 2}px;
-  display: flex;
-  align-items: center;
-`;
-
-const StyledNavigationSearchInput = styled(props => (
-  <InputBase
-    {...props}
-    classes={{
-      input: "search-input"
-    }}
-  />
-))`
-  && {
-    width: 100%;
+    position: absolute;
     height: 100%;
-    color: ${theme.palette.common.white};
-    & .search-input {
+    top: 0;
+    right: 0;
+    padding-right: ${theme.spacing.unit * 2}px;
+    display: flex;
+    align-items: center;
+  `,
+  StyledNavigationSearchInput = styled(props => (
+    <InputBase
+      {...props}
+      classes={{
+        input: 'search-input',
+      }}
+    />
+  ))`
+    && {
       width: 100%;
-      height: calc(100% - ${theme.spacing.unit * 4}px);
-      background-color: ${theme.palette.primary.dark};
-      color: inherit;
-      padding: ${theme.spacing.unit * 2}px;
+      height: 100%;
+      color: ${theme.palette.common.white};
+      & .search-input {
+        width: 100%;
+        height: calc(100% - ${theme.spacing.unit * 4}px);
+        background-color: ${theme.palette.primary.dark};
+        color: inherit;
+        padding: ${theme.spacing.unit * 2}px;
+      }
     }
-  }
-`;
+  `,
+  StyledNavigationSearchWrapper = animated(
+    styled(Paper)`
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+    `,
+  ),
+  AnimatedSearchInput = ({ ypos, value, onChange, onSubmit, onClose }) => (
+    <StyledNavigationSearchWrapper
+      square
+      style={{
+        transform: ypos.interpolate(x => `translateY(${x}%)`),
+      }}
+      method="get"
+      onSubmit={onSubmit}
+      autoComplete="off"
+      component="form"
+    >
+      <StyledNavigationSearchInput
+        placeholder="Type your query and hit Enter..."
+        name="query"
+        value={value}
+        onChange={onChange}
+      />
+      <StyledNavigationButtonWrapper>
+        <IconButton color="inherit" onClick={onClose}>
+          <CloseIcon />
+        </IconButton>
+      </StyledNavigationButtonWrapper>
+    </StyledNavigationSearchWrapper>
+  );
 
-const StyledNavigationSearchWrapper = styled(Paper)`
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-`;
+AnimatedSearchInput.propTypes = {
+  onChange: PropTypes.func.isRequired,
+  onClose: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func.isRequired,
+  value: PropTypes.string.isRequired,
+  ypos: PropTypes.object.isRequired,
+};
 
-const AnimatedSearchInput = ({
-  searchOpened,
-  value,
-  onChange,
-  onSubmit,
-  onClose
-}) => (
-  <Motion
-    defaultStyle={{
-      ypos: -110
-    }}
-    style={{
-      ypos: spring(searchOpened ? 0 : -110, {
-        stiffness: 170,
-        damping: 15
-      })
-    }}
-  >
-    {({ ypos }) => (
-      <StyledNavigationSearchWrapper
-        square
-        style={{
-          transform: `translateY(${ypos}%)`
-        }}
-        method="get"
-        onSubmit={onSubmit}
-        autoComplete="off"
-        component="form"
-      >
-        <StyledNavigationSearchInput
-          placeholder="Type your query and hit Enter..."
-          name="query"
-          value={value}
-          onChange={onChange}
-        />
-        <StyledNavigationButtonWrapper>
-          <IconButton color="inherit" onClick={onClose}>
-            <CloseIcon />
-          </IconButton>
-        </StyledNavigationButtonWrapper>
-      </StyledNavigationSearchWrapper>
-    )}
-  </Motion>
-);
 export default AnimatedSearchInput;

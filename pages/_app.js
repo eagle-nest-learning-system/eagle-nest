@@ -36,17 +36,15 @@ export default withRedux(
       pageContext = getPageContext();
 
       updateViewportDimensions = () => {
-        const newWidth = document.documentElement.clientWidth;
-
-        const newHeight = document.documentElement.clientHeight;
+        const newWidth = document.documentElement.clientWidth,
+          newHeight = document.documentElement.clientHeight;
 
         this.props.updateViewportDimensions(newWidth, newHeight);
       };
 
       componentDidMount() {
-        const jssStyles = document.querySelector('#Mui-SSR');
-
-        const preloader = document.querySelector('.eagle-preloader');
+        const jssStyles = document.querySelector('#Mui-SSR'),
+          preloader = document.querySelector('.eagle-preloader');
 
         if (preloader) preloader.classList.add('eagle-loaded');
 
@@ -64,9 +62,8 @@ export default withRedux(
       }
 
       render() {
-        const { Component, pageProps, store } = this.props;
-
-        const { theme, sheetsRegistry, sheetsManager, generateClassName } = this.pageContext;
+        const { Component, pageProps, store } = this.props,
+          { theme, sheetsRegistry, sheetsManager, generateClassName } = this.pageContext;
 
         return (
           <Container>

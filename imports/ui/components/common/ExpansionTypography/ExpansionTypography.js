@@ -5,14 +5,11 @@ import theme from '../../../theme';
 import styled from 'styled-components';
 
 const StyledExpansionTypography = styled(Typography)`
-  && {
-    font-size: ${theme.typography.pxToRem(15)};
-  }
-`;
-
-const ExpansionTypography = ({ text }) => (
-  <StyledExpansionTypography>{text}</StyledExpansionTypography>
-);
+    && {
+      font-size: ${theme.typography.pxToRem(15)};
+    }
+  `,
+  ExpansionTypography = ({ text }) => <StyledExpansionTypography>{text}</StyledExpansionTypography>;
 
 ExpansionTypography.propTypes = {
   text: PropTypes.string.isRequired,

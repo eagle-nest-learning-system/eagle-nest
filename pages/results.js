@@ -18,6 +18,7 @@ const Results = ({ searchTerm }) => (
     </ArticleStructure>
   </>
 );
+
 Results.getInitialProps = ({ query }) => {
   const searchTerm = query.query;
 

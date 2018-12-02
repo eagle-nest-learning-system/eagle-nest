@@ -1,10 +1,7 @@
-import React from "react";
-
-import { Button } from "@material-ui/core";
-
-import ToolbarComponent from "../common/ToolbarComponent";
-
-import Link from "next/link";
+import React from 'react';
+import { Button } from '@material-ui/core';
+import ToolbarComponent from '../common/ToolbarComponent';
+import Link from 'next/link';
 
 const ButtonGroup = () => (
   <ToolbarComponent flex>
