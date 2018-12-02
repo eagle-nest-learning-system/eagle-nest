@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { Button } from '@material-ui/core';
+import { Fab } from '@material-ui/core';
 import theme from '../../theme';
 import { animated } from 'react-spring';
 import Link from 'next/link';
@@ -13,7 +13,7 @@ const StyledButtonWrapper = styled.div`
     width: 100%;
   `,
   StyledButton = animated(
-    styled(Button)`
+    styled(Fab)`
       && {
         min-width: 140px;
       }
@@ -22,7 +22,7 @@ const StyledButtonWrapper = styled.div`
   ActionButton = ({ style }) => (
     <StyledButtonWrapper>
       <Link href="/register">
-        <StyledButton style={style} variant="extendedFab" color="secondary">
+        <StyledButton style={style} variant="extended" color="secondary">
           Join now!
         </StyledButton>
       </Link>
