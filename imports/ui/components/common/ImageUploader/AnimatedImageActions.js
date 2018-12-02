@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Button } from '@material-ui/core';
-import { Delete as DeleteIcon } from '@material-ui/icons';
+import { DeleteOutline as DeleteIcon } from '@material-ui/icons';
 import { fade } from '@material-ui/core/styles/colorManipulator';
 import theme from '../../../theme';
 import { animated } from 'react-spring';

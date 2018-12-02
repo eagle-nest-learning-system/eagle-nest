@@ -4,10 +4,10 @@ import { List, ListItem, ListItemIcon, ListItemText, Divider } from '@material-u
 import {
   HomeOutlined as HomeIcon,
   BugReportOutlined as BugReportIcon,
-  ContactSupportOutlined as HowTosIcon,
-  QuestionAnswerOutlined as FeedbackIcon,
-  AccountCircleOutlined as LoginIcon,
-  AssignmentIndOutlined as RegisterIcon,
+  ContactSupportOutlined as ContactSupportIcon,
+  QuestionAnswerOutlined as QuestionAnswerIcon,
+  AccountCircleOutlined as AccountCircleIcon,
+  AssignmentIndOutlined as AssignmentIndIcon,
 } from '@material-ui/icons';
 import Link from 'next/link';
 
@@ -28,7 +28,7 @@ const StyledNavigationList = styled.div`
         <Link href="/how-tos">
           <ListItem button>
             <ListItemIcon>
-              <HowTosIcon />
+              <ContactSupportIcon />
             </ListItemIcon>
             <ListItemText primary="How-tos" />
           </ListItem>
@@ -36,7 +36,7 @@ const StyledNavigationList = styled.div`
         <Link href="/q-and-a">
           <ListItem button>
             <ListItemIcon>
-              <FeedbackIcon />
+              <QuestionAnswerIcon />
             </ListItemIcon>
             <ListItemText primary="Q&A" />
           </ListItem>
@@ -47,7 +47,7 @@ const StyledNavigationList = styled.div`
         <Link href="/select-schools">
           <ListItem button>
             <ListItemIcon>
-              <LoginIcon />
+              <AccountCircleIcon />
             </ListItemIcon>
             <ListItemText primary="Login" />
           </ListItem>
@@ -55,7 +55,7 @@ const StyledNavigationList = styled.div`
         <Link href="/register">
           <ListItem button>
             <ListItemIcon>
-              <RegisterIcon />
+              <AssignmentIndIcon />
             </ListItemIcon>
             <ListItemText primary="Register" />
           </ListItem>
