@@ -1,11 +1,16 @@
 {
   "env": {
+    "es6": true,
     "browser": true,
     "node": true
   },
-  "extends": ["plugin:import/recommended", "airbnb"],
   "parser": "babel-eslint",
-  "plugins": ["babel", "import", "jsx-a11y", "material-ui"],
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module"
+  },
+  "extends": ["plugin:import/recommended", "airbnb"],
+  "plugins": ["babel", "import", "jsx-a11y"],
   "rules": {
     "linebreak-style": "off",
     "one-var": "off",
