@@ -52,7 +52,12 @@ export default class SearchGroup extends Component {
     if (!inputs.query.isInvalid) {
       const encodedKeyword = encodeURIComponent(inputs.query.value);
 
-      Router.push(`/results?query=${encodedKeyword}`);
+      Router.push({
+        pathname: '/results',
+        query: {
+          q: encodedKeyword,
+        },
+      });
       this.handleCloseSearch();
     }
   };

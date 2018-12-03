@@ -20,7 +20,7 @@ const Results = ({ searchTerm }) => (
 );
 
 Results.getInitialProps = ({ query }) => {
-  const searchTerm = query.query;
+  const searchTerm = query.q;
 
   return { searchTerm };
 };
