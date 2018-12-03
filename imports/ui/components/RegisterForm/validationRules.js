@@ -11,8 +11,7 @@ export default {
       {
         method: isAlphaSpace,
         validWhen: true,
-        message:
-          'This field should not contain any special characters and numbers',
+        message: 'This field should not contain any special characters and numbers',
       },
     ],
   },
@@ -35,8 +34,7 @@ export default {
       {
         method: 'isNumeric',
         validWhen: true,
-        message:
-          'This field should not contain any special characters and letters',
+        message: 'This field should not contain any special characters and letters',
       },
     ],
   },
@@ -50,8 +48,7 @@ export default {
       {
         method: 'isAfter',
         validWhen: false,
-        message:
-          'This field should not contain the dates that are in the future',
+        message: 'This field should not contain the dates that are in the future',
       },
     ],
   },
@@ -173,8 +170,7 @@ export default {
           },
         ],
         validWhen: true,
-        message:
-          'This field should not be shorter than 30 and longer than 150 characters!',
+        message: 'This field should not be shorter than 30 and longer than 150 characters!',
       },
     ],
   },
