@@ -10,7 +10,7 @@
     "sourceType": "module"
   },
   "extends": ["plugin:import/recommended", "airbnb"],
-  "plugins": ["babel", "import", "jsx-a11y"],
+  "plugins": ["babel", "import", "jsx-a11y", "react"],
   "rules": {
     "linebreak-style": "off",
     "one-var": "off",
