@@ -9,7 +9,7 @@ import styled from 'styled-components';
 import { connect } from 'react-redux';
 
 const StyledArticleWrapper = styled(Paper)`
-    width: 800px;
+    width: 880px;
     padding: ${theme.spacing.unit * 6}px;
     margin: auto;
 

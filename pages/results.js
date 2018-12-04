@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Typography } from '@material-ui/core';
 import Head from 'next/head';
 import ArticleStructure from '../imports/ui/components/common/ArticleStructure';
@@ -23,6 +24,10 @@ Results.getInitialProps = ({ query }) => {
   const searchTerm = query.q;
 
   return { searchTerm };
+};
+
+Results.propTypes = {
+  searchTerm: PropTypes.string.isRequired,
 };
 
 export default Results;

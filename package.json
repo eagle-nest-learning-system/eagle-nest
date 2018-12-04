@@ -4,10 +4,9 @@
   "description": "A Next.js application for school management",
   "main": "index.js",
   "scripts": {
-    "start-api": "node server/index.js",
-    "dev": "next",
+    "dev": "node server/",
     "build": "next build",
-    "start": "next start",
+    "start": "NODE_ENV=production node server/",
     "lint": "eslint ."
   },
   "repository": {
