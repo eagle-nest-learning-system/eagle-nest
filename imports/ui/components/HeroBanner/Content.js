@@ -7,7 +7,6 @@ import ActionButton from './AnimatedActionButton';
 import styled from 'styled-components';
 import theme from '../../theme';
 import { Spring } from 'react-spring';
-import { connect } from 'react-redux';
 
 const StyledMainContent = styled.div`
     margin: auto;
@@ -15,12 +14,7 @@ const StyledMainContent = styled.div`
     text-align: center;
     user-select: none;
   `,
-  mapStateToProps = state => ({
-    viewportWidth: state.app.viewportWidth,
-  }),
-  Content = ({ viewportWidth }) => {
-    const isMobile = viewportWidth < theme.breakpoints.values.sm;
-
+  Content = ({ isMobile }) => {
     return (
       <MainContentInner>
         <StyledMainContent>
@@ -75,10 +69,7 @@ const StyledMainContent = styled.div`
   };
 
 Content.propTypes = {
-  viewportWidth: PropTypes.number,
+  isMobile: PropTypes.bool.isRequired,
 };
 
-export default connect(
-  mapStateToProps,
-  null,
-)(Content);
+export default Content;
