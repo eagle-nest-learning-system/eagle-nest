@@ -5,6 +5,7 @@ import ImageUploader from '../common/ImageUploader';
 import FormValidator, { initValidationState } from '../common/FormValidator';
 import validationRules from './validationRules';
 import theme from '../../theme';
+import isImage from '../../../utils/isImage';
 import { TextField, MenuItem, Button } from '@material-ui/core';
 
 const StyledImageUploader = styled(ImageUploader)`
@@ -21,15 +22,67 @@ export default class RegisterForm extends Component {
 
   handleChange = e => {
     const target = e.target,
-      { name, value, type, files } = target;
+      { name, value } = target;
 
     this.setState(prevState => ({
       inputs: {
         ...prevState.inputs,
         [name]: {
           ...prevState.inputs[name],
-          value: type === 'file' ? [...files] : value,
-          fileList: type === 'file',
+          value,
+        },
+      },
+    }));
+  };
+
+  handleUpload = e => {
+    const target = e.target,
+      { name, files } = target,
+      imageList = this.state.inputs[name].value,
+      pendingImages = [...files]
+        .filter(image => isImage(image.name))
+        .map(image => ({
+          info: image,
+          url: URL.createObjectURL(image),
+        }))
+        .filter(image => imageList.indexOf(image) === -1);
+
+    this.setState(prevState => ({
+      inputs: {
+        ...prevState.inputs,
+        [name]: {
+          ...prevState.inputs[name],
+          value: prevState.inputs[name].value.concat(pendingImages),
+          fileList: true,
+        },
+      },
+    }));
+
+    target.value = '';
+  };
+
+  handleRemove = (name, image) => () => {
+    const imageList = this.state.inputs[name].value,
+      removeIndex = imageList.indexOf(image);
+
+    this.setState(prevState => ({
+      inputs: {
+        ...prevState.inputs,
+        [name]: {
+          ...prevState.inputs[name],
+          value: prevState.inputs[name].value.filter((image, index) => index !== removeIndex),
+        },
+      },
+    }));
+  };
+
+  handleRemoveAll = name => () => {
+    this.setState(prevState => ({
+      inputs: {
+        ...prevState.inputs,
+        [name]: {
+          ...prevState.inputs[name],
+          value: [],
         },
       },
     }));
@@ -173,10 +226,12 @@ export default class RegisterForm extends Component {
             label="Bug image (Optional)"
             id="eagle-bugs-image-upload"
             multiple
-            name="image"
-            onChange={this.handleChange}
+            name="images"
+            value={inputs.images.value}
+            onChange={this.handleUpload}
             onBlur={this.handleBlur}
-            helperText=""
+            onRemove={this.handleRemove}
+            onRemoveAll={this.handleRemoveAll}
           />
         </InputsWrapper>
         <Button type="submit" variant="contained" color="primary" disabled={!pass}>

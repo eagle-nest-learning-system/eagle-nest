@@ -23,10 +23,10 @@ const StyledImageActions = animated(
   StyledImageActionsInner = styled.div`
     margin: auto;
   `,
-  AnimatedImageActions = ({ style, onRemove, image }) => (
+  AnimatedImageActions = ({ style, onRemove, image, name }) => (
     <StyledImageActions style={style}>
       <StyledImageActionsInner>
-        <Button color="inherit" onClick={onRemove(image)}>
+        <Button color="inherit" onClick={onRemove(name, image)}>
           <InlineIcon icon={<DeleteIcon />} />
           Delete
         </Button>
@@ -36,6 +36,7 @@ const StyledImageActions = animated(
 
 AnimatedImageActions.propTypes = {
   image: PropTypes.object.isRequired,
+  name: PropTypes.string.isRequired,
   onRemove: PropTypes.func.isRequired,
   style: PropTypes.object.isRequired,
 };

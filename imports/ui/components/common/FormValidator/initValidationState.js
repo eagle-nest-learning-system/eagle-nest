@@ -4,7 +4,7 @@ export default (rules, customState) => {
 
   for (const key of keys) {
     validationState[key] = {
-      value: '',
+      value: rules[key].fileList ? [] : '',
       isFileList: false,
       switch: false,
       isFakeInvalid: false,

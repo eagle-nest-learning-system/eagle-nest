@@ -1,4 +1,4 @@
-import { isAlphaSpace } from '../../../utils/validationMethods';
+import isAlphaSpace from '../../../utils/isAlphaSpace';
 
 export default {
   name: {

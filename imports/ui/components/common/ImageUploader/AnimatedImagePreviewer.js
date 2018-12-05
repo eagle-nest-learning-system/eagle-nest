@@ -36,7 +36,7 @@ class AnimatedImagePreviewer extends Component {
 
   render() {
     const { actionsOpened } = this.state;
-    const { src, image, onRemove, style } = this.props;
+    const { src, name, image, onRemove, style } = this.props;
 
     return (
       <ClickAwayListener onClickAway={this.handleCloseActions}>
@@ -51,7 +51,9 @@ class AnimatedImagePreviewer extends Component {
               transform: `scale(${actionsOpened ? 1 : 0})`,
             }}
           >
-            {style => <AnimatedImageActions style={style} image={image} onRemove={onRemove} />}
+            {style => (
+              <AnimatedImageActions style={style} name={name} image={image} onRemove={onRemove} />
+            )}
           </Spring>
         </StyledImagePreviewer>
       </ClickAwayListener>
@@ -61,6 +63,7 @@ class AnimatedImagePreviewer extends Component {
 
 AnimatedImagePreviewer.propTypes = {
   image: PropTypes.object.isRequired,
+  name: PropTypes.string.isRequired,
   onRemove: PropTypes.func.isRequired,
   src: PropTypes.string.isRequired,
   style: PropTypes.object.isRequired,
