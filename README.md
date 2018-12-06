@@ -50,7 +50,7 @@ This project is open-source.
 
 ## Inspiration
 
-This application is created to solve most of the UI and performance issues of modern web-based school management application and is built of the most advanced [technologies](#core-technologiesdependencies). Everything students and teachers need is in one place, which saves a significant amount of time, therefore lets them do more. The application is also surprisingly easy to learn, all it takes is literally 3 minutes of your life and you are ready to go :thumbs_up:
+This application is created to solve most of the UI and performance issues of modern web-based school management applications and is built on top of the most advanced [technologies](#core-technologiesdependencies). Everything students and teachers need is in one place and they work perfectly with Office 365. The application is also surprisingly easy to learn, all it takes is literally 3 minutes of your life and you are ready to go :smiley:
 
 ## For developers
 
