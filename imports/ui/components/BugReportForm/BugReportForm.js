@@ -52,6 +52,8 @@ export default class RegisterForm extends Component {
         ...prevState.inputs,
         [name]: {
           ...prevState.inputs[name],
+          message: pendingImages.length > 0 ? '' : 'This field should only contains images',
+          isFakeInvalid: pendingImages.length < 1,
           value: prevState.inputs[name].value.concat(pendingImages),
           fileList: true,
         },
@@ -232,6 +234,8 @@ export default class RegisterForm extends Component {
             onBlur={this.handleBlur}
             onRemove={this.handleRemove}
             onRemoveAll={this.handleRemoveAll}
+            error={inputs.images.isFakeInvalid}
+            helperText={inputs.images.message}
           />
         </InputsWrapper>
         <Button type="submit" variant="contained" color="primary" disabled={!pass}>

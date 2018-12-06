@@ -3,14 +3,20 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import FileUploadButton from '../FileUploadButton';
 import AnimatedImagePreviewer from './AnimatedImagePreviewer';
-import { Typography, Button } from '@material-ui/core';
+import { InputLabel, Button, FormHelperText } from '@material-ui/core';
 import theme from '../../../theme';
 import { Transition } from 'react-spring';
 import uuidv5 from 'uuid/v5';
 
-const StyledPreviewerContainer = styled.div`
+const StyledUploaderLabel = styled(InputLabel)`
+    && {
+      position: initial;
+    }
+  `,
+  StyledPreviewerContainer = styled.div`
     display: flex;
-    margin: ${theme.spacing.unit}px -${theme.spacing.unit}px;
+    padding: ${theme.spacing.unit}px 0;
+    margin: 0 -${theme.spacing.unit}px;
     overflow: hidden;
     overflow-x: auto;
   `,
@@ -30,9 +36,13 @@ const StyledPreviewerContainer = styled.div`
     onBlur,
     onRemove,
     onRemoveAll,
+    error,
+    helperText,
   }) => (
     <div className={className}>
-      <Typography>{label}</Typography>
+      <StyledUploaderLabel error={error} shrink>
+        {label}
+      </StyledUploaderLabel>
       <StyledPreviewerContainer>
         <Transition
           native
@@ -75,11 +85,14 @@ const StyledPreviewerContainer = styled.div`
       {value.length >= 2 && (
         <StyledRemoveAllButton onClick={onRemoveAll(name)}>Delete all</StyledRemoveAllButton>
       )}
+      <FormHelperText error={error}>{helperText}</FormHelperText>
     </div>
   );
 
 ImageUploader.propTypes = {
   className: PropTypes.string,
+  error: PropTypes.bool,
+  helperText: PropTypes.string,
   id: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
   multiple: PropTypes.bool,
@@ -89,6 +102,11 @@ ImageUploader.propTypes = {
   onRemove: PropTypes.func.isRequired,
   onRemoveAll: PropTypes.func.isRequired,
   value: PropTypes.array.isRequired,
+};
+
+ImageUploader.defaultProps = {
+  error: false,
+  helperText: '',
 };
 
 ImageUploader.defaultProps = {
