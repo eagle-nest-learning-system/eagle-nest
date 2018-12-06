@@ -59,7 +59,7 @@ This application is created to solve most of the UI and performance issues of mo
 To run the project locally, clone it with the following command:
 
 ```
-  git clone https://github.com/WebDeg-Brian/static-eagle-nest
+  git clone https://github.com/WebDeg-Brian/eagle-nest.git
 ```
 
 Then install the dependencies:
