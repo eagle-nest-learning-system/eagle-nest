@@ -1,4 +1,4 @@
-# Eagle Nest - A Next.js application for school management
+# Eagle Nest Learning System
 
 :warning: The application currently supports UK phone numbers only
 
@@ -12,11 +12,10 @@
 - [For developers](#for-developers)
   - [Run project locally](#run-project-locally)
   - [Core technologies/dependencies](#core-technologiesdependencies)
-  - [Project structure](#project-structure)
 
 ## Introduction
 
-Eagle Nest is a web-based application for school management. It involves student registration, documents sharing, parents engagement, group discussions etc. all in one platform and gives students and teachers the ability to accomplish more.
+Eagle Nest Learning System is a web-based application for school management. It involves student registration, documents sharing, parents engagement, group discussions etc. all in one platform and gives students and teachers the ability to accomplish more.
 
 For more features please see [Features](#features)
 
@@ -51,7 +50,7 @@ This project is open-source.
 
 ## Inspiration
 
-I came up with this idea after noticing the lack of UI interactivity and performance on my school's management system. People may think it's not important, but improving the loading time and providing students with the best application do make a big difference.This project aims to fix these issues and provide more helpful features that you could ever think of.
+This application is created to solve most of the UI and performance issues of modern web-based school management application and is built of the most advanced [technologies](#core-technologiesdependencies). Everything students and teachers need is in one place, which saves a significant amount of time, therefore lets them do more. The application is also surprisingly easy to learn, all it takes is literally 3 minutes of your life and you are ready to go :thumbs_up:
 
 ## For developers
 
@@ -79,105 +78,3 @@ Then install the dependencies:
 - [Redux](https://github.com/reduxjs/redux)
 - [axios](https://github.com/axios/axios)
 - [validator](https://github.com/chriso/validator)
-
-### Project structure
-
-```
-├───imports
-│   ├───ui
-│   │   ├───components
-│   │   │   ├───BugReportForm
-│   │   │   │   ├───index.js
-│   │   │   │   ├───BugReportForm.js
-│   │   │   │   └───validationRules.js
-│   │   │   ├───common
-│   │   │   │   ├───ArticleStructure
-│   │   │   │   │   ├───index.js
-│   │   │   │   │   ├───AritcleBackground.js
-│   │   │   │   │   └───ArticleStructure.js
-│   │   │   │   ├───Background
-│   │   │   │   │   ├───index.js
-│   │   │   │   │   └───Background.js
-│   │   │   │   ├───ExpansionTypography
-│   │   │   │   │   ├───index.js
-│   │   │   │   │   └───ExpansionTypography.js
-│   │   │   │   ├───FormValidator
-│   │   │   │   │   ├───index.js
-│   │   │   │   │   ├───FieldValidator.js
-│   │   │   │   │   ├───FormValidator.js
-│   │   │   │   │   └───initValidationState.js
-│   │   │   │   ├───InputsWrapper
-│   │   │   │   │   ├───index.js
-│   │   │   │   │   └───InputsWrapper.js
-│   │   │   │   ├───MainContentInner
-│   │   │   │   │   ├───index.js
-│   │   │   │   │   └───MainContentInner.js
-│   │   │   │   ├───MainContentWrapper
-│   │   │   │   │   ├───index.js
-│   │   │   │   │   └───MainContentWrapper.js
-│   │   │   │   └───ToolbarComponent
-│   │   │   │   │   ├───index.js
-│   │   │   │   │   └───ToolbarComponent.js
-│   │   │   ├───HeroBanner
-│   │   │   │   ├───index.js
-│   │   │   │   ├───ActionButton.js
-│   │   │   │   ├───AnimatedContent.js
-│   │   │   │   ├───Content.js
-│   │   │   │   ├───HeroBackground.js
-│   │   │   │   └───HeroBanner.js
-│   │   │   ├───Navigation
-│   │   │   │   └───controllers
-│   │   │   │   │   ├───index.js
-│   │   │   │   │   ├───action.js
-│   │   │   │   │   ├───reducer.js
-│   │   │   │   │   └───types.js
-│   │   │   │   ├───index.js
-│   │   │   │   ├───AnimatedSearchInput.js
-│   │   │   │   ├───AnimatedTitle.js
-│   │   │   │   ├───ButtonGroup.js
-│   │   │   │   ├───Drawer.js
-│   │   │   │   ├───DrawerList.js
-│   │   │   │   ├───Navigation.js
-│   │   │   │   ├───SearchGroup.js
-│   │   │   │   ├───Title.js
-│   │   │   │   └───validationRules.js
-│   │   │   ├───Preloader
-│   │   │   │   ├───index.js
-│   │   │   │   └───Preloader.js
-│   │   │   ├───QAndAForm
-│   │   │   │   ├───index.js
-│   │   │   │   ├───QAndAForm.js
-│   │   │   │   └───validationRules.js
-│   │   │   ├───RegisterForm
-│   │   │   │   ├───index.js
-│   │   │   │   ├───RegisterForm.js
-│   │   │   │   └───validationRules.js
-│   │   │   └───SelectSchoolsForm
-│   │   │   │   ├───index.js
-│   │   │   │   ├───SelectSchoolsForm.js
-│   │   │   │   └───validationRules.js
-│   │   └───root-controllers
-│   └───utils
-│   │   ├───getPageContext.js
-│   │   ├───validationMethods.js
-│   │   └───withRedux.js
-├───pages
-│   ├───index.js
-│   ├───_app.js
-│   ├───_document.js
-│   ├───bug-report.js
-│   ├───how-tos.js
-│   ├───index.js
-│   ├───q-and-a.js
-│   ├───register.js
-│   ├───results.js
-│   └───select-schools.js
-├───server
-│   └───index.js
-└───static
-    ├───css
-    |   └───nprogress.css
-    └───images
-        ├───article-background.css
-        └───hero-banner.jpg
-```
