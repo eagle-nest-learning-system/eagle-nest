@@ -1,7 +1,7 @@
 {
-  "name": "static-eagle-nest",
+  "name": "eagle-nest",
   "version": "1.0.0",
-  "description": "A Next.js application for school management",
+  "description": "A Next.js landing website for Eagle Nest Learning System",
   "main": "index.js",
   "scripts": {
     "dev": "node server/",
@@ -11,14 +11,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/WebDeg-Brian/static-eagle-nest.git"
+    "url": "git+https://github.com/WebDeg-Brian/eagle-nest.git"
   },
   "author": "Brian Le",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/WebDeg-Brian/static-eagle-nest/issues"
+    "url": "https://github.com/WebDeg-Brian/eagle-nest/issues"
   },
-  "homepage": "https://github.com/WebDeg-Brian/static-eagle-nest#readme",
+  "homepage": "https://github.com/WebDeg-Brian/eagle-nest#readme",
   "dependencies": {
     "@material-ui/core": "^3.6.1",
     "@material-ui/icons": "^3.0.1",
