@@ -7,7 +7,7 @@ import ArticleStructure from '../imports/ui/components/common/ArticleStructure';
 const Results = ({ searchTerm }) => (
   <>
     <Head>
-      <title>Results | Eagle Nest</title>
+      <title>Search results for {searchTerm} | Eagle Nest</title>
     </Head>
     <ArticleStructure>
       <Typography variant="h2" gutterBottom>
@@ -21,7 +21,7 @@ const Results = ({ searchTerm }) => (
 );
 
 Results.getInitialProps = ({ query }) => {
-  const searchTerm = query.q;
+  const searchTerm = decodeURIComponent(query.q);
 
   return { searchTerm };
 };
